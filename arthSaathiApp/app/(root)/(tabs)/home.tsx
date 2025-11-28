@@ -21,8 +21,10 @@ export default function Home() {
 
   const handlePersonaSelect = (personaId: string) => {
     // Navigate to persona simulation screen
-    console.log("Selected persona:", personaId);
-    // router.push(`/persona/${personaId}`);
+    router.push({
+      pathname: "/(root)/persona-simulation",
+      params: { id: personaId },
+    });
   };
 
   const handleGenerateCustom = () => {
