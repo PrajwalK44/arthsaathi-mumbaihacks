@@ -1,6 +1,12 @@
 import { router, useLocalSearchParams } from "expo-router";
-import { useState } from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { useState, useEffect, useRef } from "react";
+import {
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+  Animated,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function AssessmentReport() {
@@ -11,6 +17,56 @@ export default function AssessmentReport() {
   const [activeTab, setActiveTab] = useState<"diagnosis" | "action" | "scores">(
     "diagnosis"
   );
+
+  // Animation refs for roadmap
+  const circuitLineHeight = useRef(new Animated.Value(0)).current;
+  const cardOpacities = useRef([
+    new Animated.Value(0),
+    new Animated.Value(0),
+    new Animated.Value(0),
+  ]).current;
+  const cardTranslateY = useRef([
+    new Animated.Value(30),
+    new Animated.Value(30),
+    new Animated.Value(30),
+  ]).current;
+
+  // Trigger animation when action tab is selected
+  useEffect(() => {
+    if (activeTab === "action") {
+      // Reset animations
+      circuitLineHeight.setValue(0);
+      cardOpacities.forEach((opacity) => opacity.setValue(0));
+      cardTranslateY.forEach((translateY) => translateY.setValue(30));
+
+      // Animate circuit line growing
+      Animated.timing(circuitLineHeight, {
+        toValue: 1,
+        duration: 1500,
+        useNativeDriver: false,
+      }).start();
+
+      // Staggered animation for cards
+      const animations = cardOpacities.map((opacity, index) => {
+        return Animated.parallel([
+          Animated.timing(opacity, {
+            toValue: 1,
+            duration: 600,
+            delay: 300 + index * 400,
+            useNativeDriver: true,
+          }),
+          Animated.timing(cardTranslateY[index], {
+            toValue: 0,
+            duration: 600,
+            delay: 300 + index * 400,
+            useNativeDriver: true,
+          }),
+        ]);
+      });
+
+      Animated.stagger(0, animations).start();
+    }
+  }, [activeTab]);
 
   // Generate report data based on archetype
   const getReportData = () => {
@@ -381,44 +437,113 @@ export default function AssessmentReport() {
           {/* ACTION PLAN TAB */}
           {activeTab === "action" && (
             <View>
-              <Text className="text-white text-lg font-jakarta-bold mb-4">
+              <Text className="text-white text-lg ml-12 font-jakarta-bold mb-4">
                 Your 3-Step Transformation Plan
               </Text>
 
-              {reportData.actionPlan.map((step: any, index: number) => (
-                <View
-                  key={index}
-                  className="bg-neutral-900/95 rounded-2xl p-5 mb-4 border border-white/10"
-                >
-                  <View className="flex-row items-start mb-3">
-                    <View
-                      className="w-8 h-8 rounded-full items-center justify-center mr-3"
-                      style={{ backgroundColor: reportData.color }}
-                    >
-                      <Text className="text-[#070707] text-base font-jakarta-bold">
-                        {index + 1}
-                      </Text>
+              {/* Roadmap Container with Circuit Line */}
+              <View className="relative">
+                {/* Animated Circuit Line (Vertical Glowing Line) */}
+                <Animated.View
+                  className="absolute left-4 top-0 w-1 rounded-full"
+                  style={{
+                    marginTop: 10,
+                    backgroundColor: reportData.color,
+                    height: circuitLineHeight.interpolate({
+                      inputRange: [0, 1],
+                      // reduced final height to 85%
+                      outputRange: ["0%", "85%"],
+                    }),
+                  }}
+                />
+
+                {/* Action Plan Cards */}
+                {reportData.actionPlan.map((step: any, index: number) => (
+                  <Animated.View
+                    key={index}
+                    style={{
+                      opacity: cardOpacities[index],
+                      transform: [{ translateY: cardTranslateY[index] }],
+                    }}
+                  >
+                    <View className="flex-row mb-6">
+                      {/* Circuit Node (Glowing Dot) */}
+                      <View className="relative">
+                        <View
+                          className="w-9 h-9 rounded-full items-center justify-center z-10"
+                          style={{ backgroundColor: reportData.color }}
+                        >
+                          <Text className="text-[#070707] text-base font-jakarta-bold">
+                            {index + 1}
+                          </Text>
+                        </View>
+                        {/* Glow Effect - removed (kept element for layout but hidden) */}
+                        <View
+                          className="absolute inset-0 rounded-full"
+                          style={{
+                            backgroundColor: reportData.color,
+                            opacity: 0, // shadow removed per request
+                            transform: [{ scale: 1.1 }],
+                          }}
+                        />
+                        {/* Connecting Line to Card */}
+                        <View
+                          className="absolute top-1/2 left-full h-0.5 w-4"
+                          style={{
+                            backgroundColor: reportData.color,
+                            opacity: 0.5,
+                            transform: [{ translateY: -1 }],
+                          }}
+                        />
+                      </View>
+
+                      {/* Task Card */}
+                      <View className="flex-1 ml-4 bg-neutral-900/95 rounded-2xl p-5 border border-white/10">
+                        <View className="mb-3">
+                          <Text className="text-white text-base font-jakarta-bold">
+                            {step.title}
+                          </Text>
+                          <Text
+                            className="text-xs font-jakarta-medium mt-0.5"
+                            style={{ color: reportData.color }}
+                          >
+                            {step.subtitle}
+                          </Text>
+                        </View>
+                        <Text className="text-gray-300 text-sm font-jakarta-regular leading-6">
+                          {step.description}
+                        </Text>
+
+                        {/* Progress Indicator */}
+                        <View className="mt-4 pt-3 border-t border-white/5">
+                          <View className="flex-row items-center justify-between">
+                            <Text className="text-gray-400 text-xs font-jakarta-regular">
+                              Step {index + 1} of 3
+                            </Text>
+                            <View className="flex-row gap-1">
+                              {[0, 1, 2].map((i) => (
+                                <View
+                                  key={i}
+                                  className="w-2 h-2 rounded-full"
+                                  style={{
+                                    backgroundColor:
+                                      i <= index
+                                        ? reportData.color
+                                        : "rgba(255, 255, 255, 0.2)",
+                                  }}
+                                />
+                              ))}
+                            </View>
+                          </View>
+                        </View>
+                      </View>
                     </View>
-                    <View className="flex-1">
-                      <Text className="text-white text-base font-jakarta-bold">
-                        {step.title}
-                      </Text>
-                      <Text
-                        className="text-xs font-jakarta-medium mt-0.5"
-                        style={{ color: reportData.color }}
-                      >
-                        {step.subtitle}
-                      </Text>
-                    </View>
-                  </View>
-                  <Text className="text-gray-300 text-sm font-jakarta-regular leading-6">
-                    {step.description}
-                  </Text>
-                </View>
-              ))}
+                  </Animated.View>
+                ))}
+              </View>
 
               {/* Closing Thought */}
-              <View className="bg-[#D7FF00]/10 rounded-2xl p-5 border border-[#D7FF00]/30">
+              <View className="bg-[#D7FF00]/10 rounded-2xl p-5 mt-2 border border-[#D7FF00]/30">
                 <Text className="text-[#D7FF00] text-xs font-jakarta-bold mb-2">
                   💭 CLOSING THOUGHT
                 </Text>
