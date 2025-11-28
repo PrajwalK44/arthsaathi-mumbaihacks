@@ -184,58 +184,23 @@ const Survey = () => {
   );
 
   const renderCard1 = () => (
-    <View
-      style={{
-        backgroundColor: "rgba(30, 30, 30, 0.95)",
-        borderRadius: 24,
-        padding: 24,
-        width: width - 48,
-        borderWidth: 2,
-        borderColor: "#D7FF00",
-        shadowColor: "#D7FF00",
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.3,
-        shadowRadius: 16,
-        elevation: 8,
-      }}
-    >
-      <Text
-        style={{
-          color: "#D7FF00",
-          fontSize: 14,
-          fontFamily: "Jakarta-Medium",
-          marginBottom: 8,
-        }}
-      >
+    <View className="bg-neutral-900/95 rounded-3xl p-6 border-2 border-[#D7FF00] shadow-2xl" style={{
+      width: width - 48,
+      shadowColor: "#D7FF00",
+      shadowOpacity: 0.3,
+      shadowRadius: 16,
+      shadowOffset: { width: 0, height: 8 },
+      elevation: 8,
+    }}>
+      <Text className="text-[#D7FF00] text-sm font-jakarta-medium mb-2">
         STEP 2 OF 4
       </Text>
-      <Text
-        style={{
-          color: "#FFFFFF",
-          fontSize: 24,
-          fontFamily: "Jakarta-Bold",
-          marginBottom: 32,
-        }}
-      >
+      <Text className="text-white text-2xl font-jakarta-bold mb-8">
         What is your average monthly earning?
       </Text>
 
-      <View
-        style={{
-          backgroundColor: "#1E1E1E",
-          borderRadius: 16,
-          padding: 24,
-          alignItems: "center",
-        }}
-      >
-        <Text
-          style={{
-            color: "#D7FF00",
-            fontSize: 48,
-            fontFamily: "Jakarta-Bold",
-            marginBottom: 24,
-          }}
-        >
+      <View className="bg-neutral-800 rounded-2xl p-6 items-center">
+        <Text className="text-[#D7FF00] text-5xl font-jakarta-bold mb-6">
           ₹{(surveyData.avg_monthly_income / 1000).toFixed(0)}k
         </Text>
 
@@ -253,30 +218,11 @@ const Survey = () => {
           thumbTintColor="#D7FF00"
         />
 
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            width: "100%",
-            marginTop: 8,
-          }}
-        >
-          <Text
-            style={{
-              color: "#9CA3AF",
-              fontSize: 12,
-              fontFamily: "Jakarta-Regular",
-            }}
-          >
+        <View className="flex-row justify-between w-full mt-2">
+          <Text className="text-gray-400 text-xs font-jakarta-regular">
             ₹10k
           </Text>
-          <Text
-            style={{
-              color: "#9CA3AF",
-              fontSize: 12,
-              fontFamily: "Jakarta-Regular",
-            }}
-          >
+          <Text className="text-gray-400 text-xs font-jakarta-regular">
             ₹50k+
           </Text>
         </View>
@@ -285,90 +231,46 @@ const Survey = () => {
   );
 
   const renderCard2 = () => (
-    <View
-      style={{
-        backgroundColor: "rgba(30, 30, 30, 0.95)",
-        borderRadius: 24,
-        padding: 24,
-        width: width - 48,
-        borderWidth: 2,
-        borderColor:
-          surveyData.income_volatility !== ""
-            ? "#D7FF00"
-            : "rgba(255, 255, 255, 0.1)",
-        shadowColor: "#D7FF00",
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: surveyData.income_volatility !== "" ? 0.3 : 0,
-        shadowRadius: 16,
-        elevation: 8,
-      }}
-    >
-      <Text
-        style={{
-          color: "#D7FF00",
-          fontSize: 14,
-          fontFamily: "Jakarta-Medium",
-          marginBottom: 8,
-        }}
-      >
+    <View className="bg-neutral-900/95 rounded-3xl p-6 border-2 shadow-2xl" style={{
+      width: width - 48,
+      borderColor: surveyData.income_volatility !== "" ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
+      shadowColor: "#D7FF00",
+      shadowOpacity: surveyData.income_volatility !== "" ? 0.3 : 0,
+      shadowRadius: 16,
+      shadowOffset: { width: 0, height: 8 },
+      elevation: 8,
+    }}>
+      <Text className="text-[#D7FF00] text-sm font-jakarta-medium mb-2">
         STEP 3 OF 4
       </Text>
-      <Text
-        style={{
-          color: "#FFFFFF",
-          fontSize: 24,
-          fontFamily: "Jakarta-Bold",
-          marginBottom: 24,
-        }}
-      >
+      <Text className="text-white text-2xl font-jakarta-bold mb-6">
         How often do you get paid?
       </Text>
 
-      <View style={{ gap: 12 }}>
+      <View className="gap-3">
         {volatilities.map((vol) => (
           <TouchableOpacity
             key={vol.id}
             onPress={() =>
               setSurveyData({ ...surveyData, income_volatility: vol.id })
             }
+            className="rounded-2xl p-5 border-2 flex-row items-center"
             style={{
-              backgroundColor:
-                surveyData.income_volatility === vol.id ? "#D7FF00" : "#1E1E1E",
-              borderRadius: 16,
-              padding: 20,
-              borderWidth: 2,
-              borderColor:
-                surveyData.income_volatility === vol.id
-                  ? "#D7FF00"
-                  : "rgba(255, 255, 255, 0.1)",
-              flexDirection: "row",
-              alignItems: "center",
+              backgroundColor: surveyData.income_volatility === vol.id ? "#D7FF00" : "#1E1E1E",
+              borderColor: surveyData.income_volatility === vol.id ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
             }}
           >
-            <Text style={{ fontSize: 32, marginRight: 16 }}>{vol.icon}</Text>
-            <View style={{ flex: 1 }}>
+            <Text className="text-3xl mr-4">{vol.icon}</Text>
+            <View className="flex-1">
               <Text
-                style={{
-                  color:
-                    surveyData.income_volatility === vol.id
-                      ? "#070707"
-                      : "#FFFFFF",
-                  fontSize: 18,
-                  fontFamily: "Jakarta-Bold",
-                }}
+                className="text-lg font-jakarta-bold"
+                style={{ color: surveyData.income_volatility === vol.id ? "#070707" : "#FFFFFF" }}
               >
                 {vol.label}
               </Text>
               <Text
-                style={{
-                  color:
-                    surveyData.income_volatility === vol.id
-                      ? "#333333"
-                      : "#9CA3AF",
-                  fontSize: 12,
-                  fontFamily: "Jakarta-Regular",
-                  marginTop: 2,
-                }}
+                className="text-xs font-jakarta-regular mt-0.5"
+                style={{ color: surveyData.income_volatility === vol.id ? "#333333" : "#9CA3AF" }}
               >
                 {vol.subtitle}
               </Text>
@@ -380,92 +282,46 @@ const Survey = () => {
   );
 
   const renderCard3 = () => (
-    <View
-      style={{
-        backgroundColor: "rgba(30, 30, 30, 0.95)",
-        borderRadius: 24,
-        padding: 24,
-        width: width - 48,
-        borderWidth: 2,
-        borderColor:
-          surveyData.savings_balance !== 0
-            ? "#D7FF00"
-            : "rgba(255, 255, 255, 0.1)",
-        shadowColor: "#D7FF00",
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: surveyData.savings_balance !== 0 ? 0.3 : 0,
-        shadowRadius: 16,
-        elevation: 8,
-      }}
-    >
-      <Text
-        style={{
-          color: "#D7FF00",
-          fontSize: 14,
-          fontFamily: "Jakarta-Medium",
-          marginBottom: 8,
-        }}
-      >
+    <View className="bg-neutral-900/95 rounded-3xl p-6 border-2 shadow-2xl" style={{
+      width: width - 48,
+      borderColor: surveyData.savings_balance !== 0 ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
+      shadowColor: "#D7FF00",
+      shadowOpacity: surveyData.savings_balance !== 0 ? 0.3 : 0,
+      shadowRadius: 16,
+      shadowOffset: { width: 0, height: 8 },
+      elevation: 8,
+    }}>
+      <Text className="text-[#D7FF00] text-sm font-jakarta-medium mb-2">
         STEP 4 OF 4
       </Text>
-      <Text
-        style={{
-          color: "#FFFFFF",
-          fontSize: 24,
-          fontFamily: "Jakarta-Bold",
-          marginBottom: 24,
-        }}
-      >
+      <Text className="text-white text-2xl font-jakarta-bold mb-6">
         If you stopped working today, how long could you survive?
       </Text>
 
-      <View style={{ gap: 12 }}>
+      <View className="gap-3">
         {safetyNets.map((net) => (
           <TouchableOpacity
             key={net.id}
             onPress={() =>
               setSurveyData({ ...surveyData, savings_balance: net.value })
             }
+            className="rounded-2xl p-5 border-2 flex-row items-center"
             style={{
-              backgroundColor:
-                surveyData.savings_balance === net.value
-                  ? "#D7FF00"
-                  : "#1E1E1E",
-              borderRadius: 16,
-              padding: 20,
-              borderWidth: 2,
-              borderColor:
-                surveyData.savings_balance === net.value
-                  ? "#D7FF00"
-                  : "rgba(255, 255, 255, 0.1)",
-              flexDirection: "row",
-              alignItems: "center",
+              backgroundColor: surveyData.savings_balance === net.value ? "#D7FF00" : "#1E1E1E",
+              borderColor: surveyData.savings_balance === net.value ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
             }}
           >
-            <Text style={{ fontSize: 32, marginRight: 16 }}>{net.icon}</Text>
-            <View style={{ flex: 1 }}>
+            <Text className="text-3xl mr-4">{net.icon}</Text>
+            <View className="flex-1">
               <Text
-                style={{
-                  color:
-                    surveyData.savings_balance === net.value
-                      ? "#070707"
-                      : "#FFFFFF",
-                  fontSize: 18,
-                  fontFamily: "Jakarta-Bold",
-                }}
+                className="text-lg font-jakarta-bold"
+                style={{ color: surveyData.savings_balance === net.value ? "#070707" : "#FFFFFF" }}
               >
                 {net.label}
               </Text>
               <Text
-                style={{
-                  color:
-                    surveyData.savings_balance === net.value
-                      ? "#333333"
-                      : "#9CA3AF",
-                  fontSize: 12,
-                  fontFamily: "Jakarta-Regular",
-                  marginTop: 2,
-                }}
+                className="text-xs font-jakarta-regular mt-0.5"
+                style={{ color: surveyData.savings_balance === net.value ? "#333333" : "#9CA3AF" }}
               >
                 {net.subtitle}
               </Text>
@@ -492,36 +348,21 @@ const Survey = () => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#070707" }}>
+    <SafeAreaView className="flex-1 bg-[#070707]">
       {/* Header */}
-      <View style={{ padding: 24, paddingBottom: 16 }}>
-        <Text
-          style={{
-            color: "#D7FF00",
-            fontSize: 16,
-            fontFamily: "Jakarta-Bold",
-            marginBottom: 16,
-          }}
-        >
+      <View className="p-6 pb-4">
+        <Text className="text-[#D7FF00] text-base font-jakarta-bold mb-4">
           Calibrating Digital Twin...
         </Text>
 
         {/* Progress Bar */}
-        <View
-          style={{
-            flexDirection: "row",
-            gap: 8,
-          }}
-        >
+        <View className="flex-row gap-2">
           {[0, 1, 2, 3].map((index) => (
             <View
               key={index}
+              className="flex-1 h-1 rounded-sm"
               style={{
-                flex: 1,
-                height: 4,
-                backgroundColor:
-                  index <= currentCard ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
-                borderRadius: 2,
+                backgroundColor: index <= currentCard ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
               }}
             />
           ))}
@@ -529,23 +370,14 @@ const Survey = () => {
       </View>
 
       {/* Card Stack */}
-      <View
-        style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-          paddingHorizontal: 24,
-        }}
-      >
+      <View className="flex-1 items-center justify-center px-6">
         {/* Background cards for depth effect */}
         {currentCard < 3 && (
           <View
+            className="absolute bg-neutral-900/30 rounded-3xl"
             style={{
-              position: "absolute",
               width: width - 68,
               height: 400,
-              backgroundColor: "rgba(30, 30, 30, 0.3)",
-              borderRadius: 24,
               top: "25%",
               transform: [{ scale: 0.92 }, { translateY: 20 }],
             }}
@@ -553,12 +385,10 @@ const Survey = () => {
         )}
         {currentCard < 2 && (
           <View
+            className="absolute bg-neutral-900/15 rounded-3xl"
             style={{
-              position: "absolute",
               width: width - 88,
               height: 400,
-              backgroundColor: "rgba(30, 30, 30, 0.15)",
-              borderRadius: 24,
               top: "25%",
               transform: [{ scale: 0.84 }, { translateY: 40 }],
             }}
@@ -583,30 +413,21 @@ const Survey = () => {
       </View>
 
       {/* Next Button */}
-      <View
-        style={{
-          padding: 24,
-          alignItems: "flex-end",
-        }}
-      >
+      <View className="p-6 items-end">
         <TouchableOpacity
           onPress={handleNext}
           disabled={!canProceed()}
+          className="w-16 h-16 rounded-full items-center justify-center shadow-lg"
           style={{
-            width: 64,
-            height: 64,
-            borderRadius: 32,
             backgroundColor: canProceed() ? "#D7FF00" : "#333333",
-            alignItems: "center",
-            justifyContent: "center",
             shadowColor: "#D7FF00",
-            shadowOffset: { width: 0, height: 4 },
             shadowOpacity: canProceed() ? 0.4 : 0,
             shadowRadius: 12,
+            shadowOffset: { width: 0, height: 4 },
             elevation: 8,
           }}
         >
-          <Text style={{ fontSize: 24 }}>{currentCard === 3 ? "✓" : "→"}</Text>
+          <Text className="text-2xl">{currentCard === 3 ? "✓" : "→"}</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
