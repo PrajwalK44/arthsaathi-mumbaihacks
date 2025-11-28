@@ -26,8 +26,8 @@ export default function Home() {
   };
 
   const handleGenerateCustom = () => {
-    // Navigate to survey to create custom persona
-    router.push("/(auth)/survey");
+    // Navigate to dynamic persona generation
+    router.push("/(root)/dynamic-persona");
   };
 
   return (
@@ -54,23 +54,24 @@ export default function Home() {
             className="bg-[#D7FF00]/10 rounded-3xl p-6 border-2 border-[#D7FF00]/30"
           >
             <View className="flex-row items-center mb-2">
-              <Text className="text-2xl mr-2">✨</Text>
+              <Text className="text-2xl mr-2">🤖</Text>
               <View className="bg-[#D7FF00] px-3 py-1 rounded-lg">
                 <Text className="text-[#070707] text-xs font-jakarta-bold">
-                  PERSONALIZED
+                  AI-POWERED
                 </Text>
               </View>
             </View>
             <Text className="text-white text-xl font-jakarta-bold mb-2">
-              Generate Your Own Digital Twin
+              Build Your Financial DNA
             </Text>
             <Text className="text-gray-300 text-sm font-jakarta-regular leading-5 mb-4">
-              Answer 4 quick questions to create a personalized financial
-              simulation based on YOUR income pattern and goals.
+              Take our 8-question assessment and get AI-generated insights into
+              your money personality, spending patterns, and custom
+              recommendations.
             </Text>
             <View className="flex-row items-center">
               <Text className="text-[#D7FF00] text-sm font-jakarta-bold">
-                Start Survey
+                Start Assessment
               </Text>
               <Text className="text-[#D7FF00] text-lg ml-2">→</Text>
             </View>
