@@ -135,15 +135,19 @@ const Survey = () => {
   };
 
   const renderCard0 = () => (
-    <View className="bg-neutral-900/95 rounded-3xl p-6 border-2 shadow-2xl" style={{
-      width: width - 48,
-      borderColor: surveyData.role !== "" ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
-      shadowColor: "#D7FF00",
-      shadowOpacity: surveyData.role !== "" ? 0.3 : 0,
-      shadowRadius: 16,
-      shadowOffset: { width: 0, height: 8 },
-      elevation: 8,
-    }}>
+    <View
+      className="bg-neutral-900/95 rounded-3xl p-6 border-2 shadow-2xl"
+      style={{
+        width: width - 48,
+        borderColor:
+          surveyData.role !== "" ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
+        shadowColor: "#D7FF00",
+        shadowOpacity: surveyData.role !== "" ? 0.3 : 0,
+        shadowRadius: 16,
+        shadowOffset: { width: 0, height: 8 },
+        elevation: 8,
+      }}
+    >
       <Text className="text-[#D7FF00] text-sm font-jakarta-medium mb-2">
         STEP 1 OF 4
       </Text>
@@ -160,20 +164,28 @@ const Survey = () => {
             style={{
               width: (width - 120) / 2,
               aspectRatio: 1,
-              backgroundColor: surveyData.role === role.id ? "#D7FF00" : "#1E1E1E",
-              borderColor: surveyData.role === role.id ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
+              backgroundColor:
+                surveyData.role === role.id ? "#D7FF00" : "#1E1E1E",
+              borderColor:
+                surveyData.role === role.id
+                  ? "#D7FF00"
+                  : "rgba(255, 255, 255, 0.1)",
             }}
           >
             <Text className="text-4xl mb-2">{role.icon}</Text>
             <Text
               className="text-sm font-jakarta-bold text-center"
-              style={{ color: surveyData.role === role.id ? "#070707" : "#FFFFFF" }}
+              style={{
+                color: surveyData.role === role.id ? "#070707" : "#FFFFFF",
+              }}
             >
               {role.label}
             </Text>
             <Text
               className="text-xs font-jakarta-regular text-center mt-1"
-              style={{ color: surveyData.role === role.id ? "#333333" : "#9CA3AF" }}
+              style={{
+                color: surveyData.role === role.id ? "#333333" : "#9CA3AF",
+              }}
             >
               {role.subtitle}
             </Text>
@@ -184,14 +196,17 @@ const Survey = () => {
   );
 
   const renderCard1 = () => (
-    <View className="bg-neutral-900/95 rounded-3xl p-6 border-2 border-[#D7FF00] shadow-2xl" style={{
-      width: width - 48,
-      shadowColor: "#D7FF00",
-      shadowOpacity: 0.3,
-      shadowRadius: 16,
-      shadowOffset: { width: 0, height: 8 },
-      elevation: 8,
-    }}>
+    <View
+      className="bg-neutral-900/95 rounded-3xl p-6 border-2 border-[#D7FF00] shadow-2xl"
+      style={{
+        width: width - 48,
+        shadowColor: "#D7FF00",
+        shadowOpacity: 0.3,
+        shadowRadius: 16,
+        shadowOffset: { width: 0, height: 8 },
+        elevation: 8,
+      }}
+    >
       <Text className="text-[#D7FF00] text-sm font-jakarta-medium mb-2">
         STEP 2 OF 4
       </Text>
@@ -231,15 +246,21 @@ const Survey = () => {
   );
 
   const renderCard2 = () => (
-    <View className="bg-neutral-900/95 rounded-3xl p-6 border-2 shadow-2xl" style={{
-      width: width - 48,
-      borderColor: surveyData.income_volatility !== "" ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
-      shadowColor: "#D7FF00",
-      shadowOpacity: surveyData.income_volatility !== "" ? 0.3 : 0,
-      shadowRadius: 16,
-      shadowOffset: { width: 0, height: 8 },
-      elevation: 8,
-    }}>
+    <View
+      className="bg-neutral-900/95 rounded-3xl p-6 border-2 shadow-2xl"
+      style={{
+        width: width - 48,
+        borderColor:
+          surveyData.income_volatility !== ""
+            ? "#D7FF00"
+            : "rgba(255, 255, 255, 0.1)",
+        shadowColor: "#D7FF00",
+        shadowOpacity: surveyData.income_volatility !== "" ? 0.3 : 0,
+        shadowRadius: 16,
+        shadowOffset: { width: 0, height: 8 },
+        elevation: 8,
+      }}
+    >
       <Text className="text-[#D7FF00] text-sm font-jakarta-medium mb-2">
         STEP 3 OF 4
       </Text>
@@ -256,21 +277,35 @@ const Survey = () => {
             }
             className="rounded-2xl p-5 border-2 flex-row items-center"
             style={{
-              backgroundColor: surveyData.income_volatility === vol.id ? "#D7FF00" : "#1E1E1E",
-              borderColor: surveyData.income_volatility === vol.id ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
+              backgroundColor:
+                surveyData.income_volatility === vol.id ? "#D7FF00" : "#1E1E1E",
+              borderColor:
+                surveyData.income_volatility === vol.id
+                  ? "#D7FF00"
+                  : "rgba(255, 255, 255, 0.1)",
             }}
           >
             <Text className="text-3xl mr-4">{vol.icon}</Text>
             <View className="flex-1">
               <Text
                 className="text-lg font-jakarta-bold"
-                style={{ color: surveyData.income_volatility === vol.id ? "#070707" : "#FFFFFF" }}
+                style={{
+                  color:
+                    surveyData.income_volatility === vol.id
+                      ? "#070707"
+                      : "#FFFFFF",
+                }}
               >
                 {vol.label}
               </Text>
               <Text
                 className="text-xs font-jakarta-regular mt-0.5"
-                style={{ color: surveyData.income_volatility === vol.id ? "#333333" : "#9CA3AF" }}
+                style={{
+                  color:
+                    surveyData.income_volatility === vol.id
+                      ? "#333333"
+                      : "#9CA3AF",
+                }}
               >
                 {vol.subtitle}
               </Text>
@@ -282,15 +317,21 @@ const Survey = () => {
   );
 
   const renderCard3 = () => (
-    <View className="bg-neutral-900/95 rounded-3xl p-6 border-2 shadow-2xl" style={{
-      width: width - 48,
-      borderColor: surveyData.savings_balance !== 0 ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
-      shadowColor: "#D7FF00",
-      shadowOpacity: surveyData.savings_balance !== 0 ? 0.3 : 0,
-      shadowRadius: 16,
-      shadowOffset: { width: 0, height: 8 },
-      elevation: 8,
-    }}>
+    <View
+      className="bg-neutral-900/95 rounded-3xl p-6 border-2 shadow-2xl"
+      style={{
+        width: width - 48,
+        borderColor:
+          surveyData.savings_balance !== 0
+            ? "#D7FF00"
+            : "rgba(255, 255, 255, 0.1)",
+        shadowColor: "#D7FF00",
+        shadowOpacity: surveyData.savings_balance !== 0 ? 0.3 : 0,
+        shadowRadius: 16,
+        shadowOffset: { width: 0, height: 8 },
+        elevation: 8,
+      }}
+    >
       <Text className="text-[#D7FF00] text-sm font-jakarta-medium mb-2">
         STEP 4 OF 4
       </Text>
@@ -307,21 +348,37 @@ const Survey = () => {
             }
             className="rounded-2xl p-5 border-2 flex-row items-center"
             style={{
-              backgroundColor: surveyData.savings_balance === net.value ? "#D7FF00" : "#1E1E1E",
-              borderColor: surveyData.savings_balance === net.value ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
+              backgroundColor:
+                surveyData.savings_balance === net.value
+                  ? "#D7FF00"
+                  : "#1E1E1E",
+              borderColor:
+                surveyData.savings_balance === net.value
+                  ? "#D7FF00"
+                  : "rgba(255, 255, 255, 0.1)",
             }}
           >
             <Text className="text-3xl mr-4">{net.icon}</Text>
             <View className="flex-1">
               <Text
                 className="text-lg font-jakarta-bold"
-                style={{ color: surveyData.savings_balance === net.value ? "#070707" : "#FFFFFF" }}
+                style={{
+                  color:
+                    surveyData.savings_balance === net.value
+                      ? "#070707"
+                      : "#FFFFFF",
+                }}
               >
                 {net.label}
               </Text>
               <Text
                 className="text-xs font-jakarta-regular mt-0.5"
-                style={{ color: surveyData.savings_balance === net.value ? "#333333" : "#9CA3AF" }}
+                style={{
+                  color:
+                    surveyData.savings_balance === net.value
+                      ? "#333333"
+                      : "#9CA3AF",
+                }}
               >
                 {net.subtitle}
               </Text>
@@ -362,7 +419,8 @@ const Survey = () => {
               key={index}
               className="flex-1 h-1 rounded-sm"
               style={{
-                backgroundColor: index <= currentCard ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
+                backgroundColor:
+                  index <= currentCard ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
               }}
             />
           ))}
