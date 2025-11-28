@@ -1,360 +1,198 @@
+import { router } from "expo-router";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+// Import persona data
+const personasData = require("@/data/personas.json");
+
 export default function Home() {
+  const personas = personasData.personas;
+
+  const getPersonaEmoji = (type: string) => {
+    const emojiMap: { [key: string]: string } = {
+      logistics_delivery: "🛵",
+      creative_freelancer: "💻",
+      asset_heavy_gig: "🚗",
+      micro_entrepreneur: "🧁",
+      platform_technician: "🔧",
+    };
+    return emojiMap[type] || "👤";
+  };
+
+  const handlePersonaSelect = (personaId: string) => {
+    // Navigate to persona simulation screen
+    console.log("Selected persona:", personaId);
+    // router.push(`/persona/${personaId}`);
+  };
+
+  const handleGenerateCustom = () => {
+    // Navigate to survey to create custom persona
+    router.push("/(auth)/survey");
+  };
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#070707" }}>
+    <SafeAreaView className="flex-1 bg-[#070707]">
       <ScrollView
-        style={{ flex: 1 }}
+        className="flex-1"
         contentContainerStyle={{ paddingBottom: 100 }}
         showsVerticalScrollIndicator={false}
       >
         {/* Header */}
-        <View style={{ padding: 20, paddingBottom: 12 }}>
-          <Text
-            style={{
-              color: "#FFFFFF",
-              fontSize: 28,
-              fontFamily: "Jakarta-Bold",
-            }}
-          >
+        <View className="p-5 pb-3">
+          <Text className="text-white text-3xl font-jakarta-bold">
             ArthSaathi
           </Text>
-          <Text
-            style={{
-              color: "#9CA3AF",
-              fontSize: 14,
-              fontFamily: "Jakarta-Regular",
-              marginTop: 4,
-            }}
-          >
-            Your Financial Guardian
+          <Text className="text-gray-400 text-sm font-jakarta-regular mt-1">
+            Choose Your Financial Journey
           </Text>
         </View>
 
-        {/* Balance Card */}
-        <View style={{ paddingHorizontal: 20, marginBottom: 20 }}>
-          <View
-            style={{
-              backgroundColor: "rgba(30, 30, 30, 0.95)",
-              borderRadius: 24,
-              padding: 24,
-              borderWidth: 1,
-              borderColor: "rgba(215, 255, 0, 0.3)",
-              shadowColor: "#D7FF00",
-              shadowOffset: { width: 0, height: 8 },
-              shadowOpacity: 0.2,
-              shadowRadius: 16,
-              elevation: 8,
-            }}
+        {/* Generate Custom Persona Banner */}
+        <View className="px-5 mb-6">
+          <TouchableOpacity
+            onPress={handleGenerateCustom}
+            className="bg-[#D7FF00]/10 rounded-3xl p-6 border-2 border-[#D7FF00]/30"
           >
-            <Text
-              style={{
-                color: "#9CA3AF",
-                fontSize: 12,
-                fontFamily: "Jakarta-Medium",
-                marginBottom: 8,
-              }}
-            >
-              CURRENT BALANCE
-            </Text>
-            <Text
-              style={{
-                color: "#D7FF00",
-                fontSize: 42,
-                fontFamily: "Jakarta-Bold",
-                marginBottom: 16,
-              }}
-            >
-              ₹24,580
-            </Text>
-
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                marginTop: 12,
-                paddingTop: 16,
-                borderTopWidth: 1,
-                borderTopColor: "rgba(255, 255, 255, 0.1)",
-              }}
-            >
-              <View>
-                <Text
-                  style={{
-                    color: "#9CA3AF",
-                    fontSize: 11,
-                    fontFamily: "Jakarta-Regular",
-                  }}
-                >
-                  This Month Income
-                </Text>
-                <Text
-                  style={{
-                    color: "#FFFFFF",
-                    fontSize: 18,
-                    fontFamily: "Jakarta-Bold",
-                    marginTop: 4,
-                  }}
-                >
-                  ₹32,400
-                </Text>
-              </View>
-              <View style={{ alignItems: "flex-end" }}>
-                <Text
-                  style={{
-                    color: "#9CA3AF",
-                    fontSize: 11,
-                    fontFamily: "Jakarta-Regular",
-                  }}
-                >
-                  Expenses
-                </Text>
-                <Text
-                  style={{
-                    color: "#FF6B6B",
-                    fontSize: 18,
-                    fontFamily: "Jakarta-Bold",
-                    marginTop: 4,
-                  }}
-                >
-                  ₹7,820
+            <View className="flex-row items-center mb-2">
+              <Text className="text-2xl mr-2">✨</Text>
+              <View className="bg-[#D7FF00] px-3 py-1 rounded-lg">
+                <Text className="text-[#070707] text-xs font-jakarta-bold">
+                  PERSONALIZED
                 </Text>
               </View>
             </View>
-          </View>
-        </View>
-
-        {/* Quick Actions */}
-        <View style={{ paddingHorizontal: 20, marginBottom: 24 }}>
-          <Text
-            style={{
-              color: "#FFFFFF",
-              fontSize: 16,
-              fontFamily: "Jakarta-Bold",
-              marginBottom: 12,
-            }}
-          >
-            Quick Actions
-          </Text>
-          <View style={{ flexDirection: "row", gap: 12 }}>
-            <TouchableOpacity
-              style={{
-                flex: 1,
-                backgroundColor: "#1E1E1E",
-                borderRadius: 16,
-                padding: 16,
-                alignItems: "center",
-                borderWidth: 1,
-                borderColor: "rgba(255, 255, 255, 0.1)",
-              }}
-            >
-              <Text style={{ fontSize: 24, marginBottom: 8 }}>💰</Text>
-              <Text
-                style={{
-                  color: "#FFFFFF",
-                  fontSize: 12,
-                  fontFamily: "Jakarta-Medium",
-                }}
-              >
-                Add Income
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={{
-                flex: 1,
-                backgroundColor: "#1E1E1E",
-                borderRadius: 16,
-                padding: 16,
-                alignItems: "center",
-                borderWidth: 1,
-                borderColor: "rgba(255, 255, 255, 0.1)",
-              }}
-            >
-              <Text style={{ fontSize: 24, marginBottom: 8 }}>💸</Text>
-              <Text
-                style={{
-                  color: "#FFFFFF",
-                  fontSize: 12,
-                  fontFamily: "Jakarta-Medium",
-                }}
-              >
-                Add Expense
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={{
-                flex: 1,
-                backgroundColor: "#1E1E1E",
-                borderRadius: 16,
-                padding: 16,
-                alignItems: "center",
-                borderWidth: 1,
-                borderColor: "rgba(255, 255, 255, 0.1)",
-              }}
-            >
-              <Text style={{ fontSize: 24, marginBottom: 8 }}>🎯</Text>
-              <Text
-                style={{
-                  color: "#FFFFFF",
-                  fontSize: 12,
-                  fontFamily: "Jakarta-Medium",
-                }}
-              >
-                Set Goal
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {/* AI Insights */}
-        <View style={{ paddingHorizontal: 20, marginBottom: 24 }}>
-          <Text
-            style={{
-              color: "#FFFFFF",
-              fontSize: 16,
-              fontFamily: "Jakarta-Bold",
-              marginBottom: 12,
-            }}
-          >
-            AI Insights
-          </Text>
-          <View
-            style={{
-              backgroundColor: "rgba(215, 255, 0, 0.1)",
-              borderRadius: 16,
-              padding: 16,
-              borderWidth: 1,
-              borderColor: "rgba(215, 255, 0, 0.3)",
-            }}
-          >
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                marginBottom: 8,
-              }}
-            >
-              <Text style={{ fontSize: 20, marginRight: 8 }}>🤖</Text>
-              <Text
-                style={{
-                  color: "#D7FF00",
-                  fontSize: 14,
-                  fontFamily: "Jakarta-Bold",
-                }}
-              >
-                Digital Twin Analysis
-              </Text>
-            </View>
-            <Text
-              style={{
-                color: "#FFFFFF",
-                fontSize: 13,
-                fontFamily: "Jakarta-Regular",
-                lineHeight: 20,
-              }}
-            >
-              Your spending pattern shows you can save ₹3,200 more this month by
-              reducing food delivery expenses by 40%.
+            <Text className="text-white text-xl font-jakarta-bold mb-2">
+              Generate Your Own Digital Twin
             </Text>
+            <Text className="text-gray-300 text-sm font-jakarta-regular leading-5 mb-4">
+              Answer 4 quick questions to create a personalized financial
+              simulation based on YOUR income pattern and goals.
+            </Text>
+            <View className="flex-row items-center">
+              <Text className="text-[#D7FF00] text-sm font-jakarta-bold">
+                Start Survey
+              </Text>
+              <Text className="text-[#D7FF00] text-lg ml-2">→</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        {/* Or Divider */}
+        <View className="px-5 mb-6">
+          <View className="flex-row items-center">
+            <View className="flex-1 h-px bg-white/10" />
+            <Text className="text-gray-400 text-xs font-jakarta-medium mx-4">
+              OR CHOOSE A PRESET PERSONA
+            </Text>
+            <View className="flex-1 h-px bg-white/10" />
           </View>
         </View>
 
-        {/* Expense Breakdown */}
-        <View style={{ paddingHorizontal: 20 }}>
-          <Text
-            style={{
-              color: "#FFFFFF",
-              fontSize: 16,
-              fontFamily: "Jakarta-Bold",
-              marginBottom: 12,
-            }}
-          >
-            Top Expenses
+        {/* Persona Cards */}
+        <View className="px-5">
+          <Text className="text-white text-lg font-jakarta-bold mb-4">
+            Pre-Built Personas
           </Text>
-          {[
-            {
-              category: "Food & Dining",
-              amount: 3200,
-              color: "#FF6B6B",
-              percent: 41,
-            },
-            {
-              category: "Transportation",
-              amount: 2400,
-              color: "#4ECDC4",
-              percent: 31,
-            },
-            {
-              category: "Bills & Utilities",
-              amount: 1820,
-              color: "#FFD93D",
-              percent: 23,
-            },
-            {
-              category: "Entertainment",
-              amount: 400,
-              color: "#A78BFA",
-              percent: 5,
-            },
-          ].map((item, index) => (
-            <View
-              key={index}
-              style={{
-                backgroundColor: "#1E1E1E",
-                borderRadius: 12,
-                padding: 16,
-                marginBottom: 8,
-                borderWidth: 1,
-                borderColor: "rgba(255, 255, 255, 0.1)",
-              }}
+
+          {personas.map((persona: any) => (
+            <TouchableOpacity
+              key={persona.id}
+              onPress={() => handlePersonaSelect(persona.id)}
+              className="bg-neutral-900/95 rounded-2xl p-5 mb-4 border border-white/10"
             >
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginBottom: 8,
-                }}
-              >
-                <Text
-                  style={{
-                    color: "#FFFFFF",
-                    fontSize: 14,
-                    fontFamily: "Jakarta-Medium",
-                  }}
-                >
-                  {item.category}
-                </Text>
-                <Text
-                  style={{
-                    color: "#FFFFFF",
-                    fontSize: 14,
-                    fontFamily: "Jakarta-Bold",
-                  }}
-                >
-                  ₹{item.amount}
+              {/* Header */}
+              <View className="flex-row items-start justify-between mb-3">
+                <View className="flex-row items-center flex-1">
+                  <View className="w-12 h-12 rounded-full bg-neutral-800 items-center justify-center mr-3">
+                    <Text className="text-3xl">
+                      {getPersonaEmoji(persona.type)}
+                    </Text>
+                  </View>
+                  <View className="flex-1">
+                    <Text className="text-white text-base font-jakarta-bold">
+                      {persona.display_profile.name}
+                    </Text>
+                    <Text className="text-gray-400 text-xs font-jakarta-regular">
+                      {persona.display_profile.role}
+                    </Text>
+                  </View>
+                </View>
+                <View className="bg-neutral-800 px-2 py-1 rounded-lg">
+                  <Text className="text-gray-400 text-xs font-jakarta-medium">
+                    {persona.display_profile.age} yrs
+                  </Text>
+                </View>
+              </View>
+
+              {/* Quote */}
+              <View className="bg-neutral-800/50 rounded-xl p-3 mb-3">
+                <Text className="text-gray-300 text-xs font-jakarta-regular italic">
+                  &ldquo;{persona.display_profile.quote}&rdquo;
                 </Text>
               </View>
-              <View
-                style={{
-                  height: 6,
-                  backgroundColor: "rgba(255, 255, 255, 0.1)",
-                  borderRadius: 3,
-                  overflow: "hidden",
-                }}
-              >
-                <View
-                  style={{
-                    height: "100%",
-                    width: `${item.percent}%`,
-                    backgroundColor: item.color,
-                  }}
-                />
+
+              {/* Financial Stats */}
+              <View className="flex-row gap-2 mb-3">
+                <View className="flex-1 bg-neutral-800 rounded-lg p-2">
+                  <Text className="text-gray-400 text-[10px] font-jakarta-regular">
+                    Monthly Income
+                  </Text>
+                  <Text className="text-[#4ECDC4] text-sm font-jakarta-bold">
+                    ₹
+                    {(
+                      persona.financial_baseline.avg_monthly_income / 1000
+                    ).toFixed(0)}
+                    k
+                  </Text>
+                </View>
+                <View className="flex-1 bg-neutral-800 rounded-lg p-2">
+                  <Text className="text-gray-400 text-[10px] font-jakarta-regular">
+                    Savings
+                  </Text>
+                  <Text className="text-[#D7FF00] text-sm font-jakarta-bold">
+                    ₹
+                    {(
+                      persona.financial_baseline.savings_balance / 1000
+                    ).toFixed(0)}
+                    k
+                  </Text>
+                </View>
+                <View className="flex-1 bg-neutral-800 rounded-lg p-2">
+                  <Text className="text-gray-400 text-[10px] font-jakarta-regular">
+                    Debt
+                  </Text>
+                  <Text className="text-[#FF6B6B] text-sm font-jakarta-bold">
+                    ₹{(persona.financial_baseline.debt_total / 1000).toFixed(0)}
+                    k
+                  </Text>
+                </View>
               </View>
-            </View>
+
+              {/* Location & Risk */}
+              <View className="flex-row items-center justify-between">
+                <View className="flex-row items-center">
+                  <Text className="text-xs mr-1">📍</Text>
+                  <Text className="text-gray-400 text-xs font-jakarta-regular">
+                    {persona.display_profile.location}
+                  </Text>
+                </View>
+                <View className="bg-neutral-800 px-2 py-1 rounded">
+                  <Text className="text-gray-400 text-[10px] font-jakarta-regular">
+                    {persona.psychometric_profile.risk_appetite} Risk
+                  </Text>
+                </View>
+              </View>
+
+              {/* CTA */}
+              <View className="mt-3 pt-3 border-t border-white/10">
+                <View className="flex-row items-center justify-between">
+                  <Text className="text-white text-xs font-jakarta-medium">
+                    Start Simulation
+                  </Text>
+                  <Text className="text-[#D7FF00] text-lg">›</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
           ))}
         </View>
       </ScrollView>
