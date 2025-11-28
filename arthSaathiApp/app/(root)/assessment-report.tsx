@@ -7,6 +7,14 @@ import {
   View,
   Animated,
 } from "react-native";
+import {
+  Svg,
+  Polygon,
+  Circle,
+  Line,
+  G,
+  Text as SvgText,
+} from "react-native-svg";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function AssessmentReport() {
@@ -283,6 +291,36 @@ export default function AssessmentReport() {
 
   const reportData = getReportData();
 
+  // Radar chart helpers
+  const radarCenter = { x: 120, y: 120 };
+  const radarRadius = 84;
+
+  const getScoreArray = () => {
+    // Order: Discipline, Resilience, Vision, Risk
+    const ms = reportData?.mindsetScores || {};
+    return [
+      ms.discipline ?? 0,
+      (ms.resilience ?? ms.anxiety) ? 100 - ms.anxiety : 0,
+      ms.vision ?? 50,
+      ms.risk_tolerance ?? 0,
+    ];
+  };
+
+  const polygonPoints = (values: number[]) => {
+    const n = values.length;
+    const angleStep = (2 * Math.PI) / n;
+    return values
+      .map((v, i) => {
+        const ratio = Math.max(0, Math.min(1, v / 100));
+        const r = ratio * radarRadius;
+        const angle = i * angleStep - Math.PI / 2; // start at top
+        const x = radarCenter.x + r * Math.cos(angle);
+        const y = radarCenter.y + r * Math.sin(angle);
+        return `${x},${y}`;
+      })
+      .join(" ");
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-[#070707]">
       {/* Header */}
@@ -449,40 +487,40 @@ export default function AssessmentReport() {
                 </Text>
                 <View className="flex-row justify-between">
                   <View
-                    className="flex-1 rounded-full py-2 px-3 mr-2 items-center"
+                    className="flex-1 rounded-full py-2 px-3 mr-2 items-center justify-center"
                     style={{
                       backgroundColor: "rgba(255,217,61,0.06)",
                       borderWidth: 1,
                       borderColor: "#FFD93D",
                     }}
                   >
-                    <Text className="text-[#FFD93D] font-jakarta-medium">
+                    <Text className="text-[#FFD93D] font-jakarta-medium text-center">
                       Behavioral: Loss Aversion
                     </Text>
                   </View>
 
                   <View
-                    className="flex-1 rounded-full py-2 px-3 mx-2 items-center"
+                    className="flex-1 rounded-full py-2 px-3 mx-2 items-center justify-center"
                     style={{
                       backgroundColor: "rgba(255,107,107,0.06)",
                       borderWidth: 1,
                       borderColor: "#FF6B6B",
                     }}
                   >
-                    <Text className="text-[#FF6B6B] font-jakarta-medium">
+                    <Text className="text-[#FF6B6B] font-jakarta-medium text-center">
                       Structural: High Rent
                     </Text>
                   </View>
 
                   <View
-                    className="flex-1 rounded-full py-2 px-3 ml-2 items-center"
+                    className="flex-1 rounded-full py-2 px-3 ml-2 items-center justify-center"
                     style={{
                       backgroundColor: "rgba(255,217,61,0.06)",
                       borderWidth: 1,
                       borderColor: "#FFD93D",
                     }}
                   >
-                    <Text className="text-[#FFD93D] font-jakarta-medium">
+                    <Text className="text-[#FFD93D] font-jakarta-medium text-center">
                       Habit: Late Payments
                     </Text>
                   </View>
@@ -617,95 +655,132 @@ export default function AssessmentReport() {
           {activeTab === "scores" && (
             <View>
               <Text className="text-white text-lg font-jakarta-bold mb-4">
-                Your Financial Mindset Scores
+                Psychometric Profile
               </Text>
 
-              {Object.entries(reportData.mindsetScores).map(
-                ([key, value]: [string, any]) => (
-                  <View key={key} className="mb-5">
-                    <View className="flex-row items-center justify-between mb-2">
-                      <Text className="text-white text-base font-jakarta-medium capitalize">
-                        {key.replace(/_/g, " ")}
-                      </Text>
-                      <Text
-                        className="text-2xl font-jakarta-bold"
+              {/* Hero: Radar Chart */}
+              <View className="items-center mb-6">
+                <Svg width={240} height={240}>
+                  <G>
+                    {/* grid rings */}
+                    {[0.25, 0.5, 0.75, 1].map((r, i) => {
+                      const radius = radarRadius * r;
+                      const steps = 4;
+                      const angleStep = (2 * Math.PI) / steps;
+                      const points = Array.from({ length: steps })
+                        .map((_, idx) => {
+                          const angle = idx * angleStep - Math.PI / 2;
+                          const x = radarCenter.x + radius * Math.cos(angle);
+                          const y = radarCenter.y + radius * Math.sin(angle);
+                          return `${x},${y}`;
+                        })
+                        .join(" ");
+                      return (
+                        <Polygon
+                          key={i}
+                          points={points}
+                          fill="none"
+                          stroke="#222"
+                          strokeWidth={1}
+                        />
+                      );
+                    })}
+
+                    {/* labels */}
+                    {["Discipline", "Resilience", "Vision", "Risk"].map(
+                      (label, i) => {
+                        const angle = (i * (2 * Math.PI)) / 4 - Math.PI / 2;
+                        const x =
+                          radarCenter.x + (radarRadius + 18) * Math.cos(angle);
+                        const y =
+                          radarCenter.y + (radarRadius + 18) * Math.sin(angle);
+                        return (
+                          <SvgText
+                            key={i}
+                            x={x}
+                            y={y}
+                            fontSize={11}
+                            fill="#bbb"
+                            textAnchor="middle"
+                          >
+                            {label}
+                          </SvgText>
+                        );
+                      }
+                    )}
+
+                    {/* data polygon */}
+                    {(() => {
+                      const vals = getScoreArray();
+                      const pts = polygonPoints(vals);
+                      return (
+                        <Polygon
+                          points={pts}
+                          fill={(reportData?.color || "#D7FF00") + "33"}
+                          stroke={reportData?.color || "#D7FF00"}
+                          strokeWidth={2}
+                        />
+                      );
+                    })()}
+                  </G>
+                </Svg>
+              </View>
+
+              {/* Score Cards */}
+              <View className="space-y-3 mb-4">
+                {Object.entries(reportData.mindsetScores).map(
+                  ([key, value]: [string, any]) => {
+                    const label = key.replace(/_/g, " ");
+                    const borderColor =
+                      value >= 70
+                        ? reportData?.color || "#4ECDC4"
+                        : value >= 40
+                          ? "#FFD93D"
+                          : "#FF6B6B";
+                    const archetypeText =
+                      value >= 70 ? "Strong" : value >= 40 ? "Moderate" : "Low";
+                    return (
+                      <View
+                        key={key}
+                        className="rounded-2xl p-4"
                         style={{
-                          color:
-                            value >= 70
-                              ? "#4ECDC4"
-                              : value >= 40
-                                ? "#FFD93D"
-                                : "#FF6B6B",
+                          backgroundColor: "rgba(255,255,255,0.02)",
+                          borderWidth: 1,
+                          borderColor,
                         }}
                       >
-                        {value}
-                      </Text>
-                    </View>
-                    <View className="h-3 bg-neutral-800 rounded-full overflow-hidden">
-                      <View
-                        className="h-full rounded-full"
-                        style={{
-                          width: `${value}%`,
-                          backgroundColor:
-                            value >= 70
-                              ? "#4ECDC4"
-                              : value >= 40
-                                ? "#FFD93D"
-                                : "#FF6B6B",
-                        }}
-                      />
-                    </View>
-                    <Text className="text-gray-400 text-xs font-jakarta-regular mt-1">
-                      {value >= 70
-                        ? "Strong foundation"
-                        : value >= 40
-                          ? "Room for growth"
-                          : "Needs attention"}
-                    </Text>
-                  </View>
-                )
-              )}
+                        <View className="flex-row items-center justify-between">
+                          <View>
+                            <Text className="text-white text-base font-jakarta-bold">
+                              {label}
+                            </Text>
+                            <Text className="text-gray-300 text-sm">
+                              {archetypeText}: {value}/100
+                            </Text>
+                          </View>
+                          <Text
+                            className="text-sm font-jakarta-bold"
+                            style={{ color: borderColor }}
+                          >
+                            {archetypeText}
+                          </Text>
+                        </View>
+                      </View>
+                    );
+                  }
+                )}
+              </View>
 
-              {/* Score Interpretation */}
-              <View className="bg-neutral-900/95 rounded-2xl p-5 border border-white/10">
-                <Text className="text-white text-base font-jakarta-bold mb-3">
-                  📊 What These Scores Mean
-                </Text>
-                <View className="gap-3">
-                  <View>
-                    <Text className="text-gray-400 text-xs font-jakarta-bold mb-1">
-                      LITERACY
-                    </Text>
-                    <Text className="text-gray-300 text-sm font-jakarta-regular leading-5">
-                      Your understanding of financial concepts and tools
-                    </Text>
-                  </View>
-                  <View>
-                    <Text className="text-gray-400 text-xs font-jakarta-bold mb-1">
-                      ANXIETY
-                    </Text>
-                    <Text className="text-gray-300 text-sm font-jakarta-regular leading-5">
-                      How much financial stress affects your daily life
-                    </Text>
-                  </View>
-                  <View>
-                    <Text className="text-gray-400 text-xs font-jakarta-bold mb-1">
-                      DISCIPLINE
-                    </Text>
-                    <Text className="text-gray-300 text-sm font-jakarta-regular leading-5">
-                      Your ability to stick to plans and resist impulses
-                    </Text>
-                  </View>
-                  <View>
-                    <Text className="text-gray-400 text-xs font-jakarta-bold mb-1">
-                      RISK TOLERANCE
-                    </Text>
-                    <Text className="text-gray-300 text-sm font-jakarta-regular leading-5">
-                      Your comfort level with financial uncertainty and
-                      investing
-                    </Text>
-                  </View>
-                </View>
+              {/* Info Button */}
+              <View className="items-center">
+                <TouchableOpacity
+                  className="px-4 py-2 rounded-full"
+                  style={{ borderWidth: 1, borderColor: "#666" }}
+                >
+                  <Text className="text-gray-400 text-sm">
+                    How is this calculated?
+                  </Text>
+                </TouchableOpacity>
               </View>
             </View>
           )}
