@@ -370,65 +370,122 @@ export default function AssessmentReport() {
         showsVerticalScrollIndicator={false}
       >
         <View className="px-6">
-          {/* DIAGNOSIS TAB */}
+          {/* DIAGNOSIS TAB - Financial X-Ray Scan */}
           {activeTab === "diagnosis" && (
             <View>
-              {/* Good News */}
-              <View className="bg-[#4ECDC4]/10 rounded-2xl p-5 mb-4 border border-[#4ECDC4]/30">
-                <Text className="text-[#4ECDC4] text-xs font-jakarta-bold mb-2">
-                  ✅ THE GOOD NEWS
-                </Text>
-                <Text className="text-white text-base font-jakarta-bold mb-3">
-                  You Have a Superpower
-                </Text>
-                <Text className="text-gray-300 text-sm font-jakarta-regular leading-6">
-                  {reportData.goodNews}
-                </Text>
-              </View>
-
-              {/* The Diagnosis */}
-              <View className="bg-neutral-900/95 rounded-2xl p-5 mb-4 border border-white/10">
-                <Text className="text-white text-base font-jakarta-bold mb-3">
-                  🔍 The Diagnosis
-                </Text>
-                <Text className="text-gray-300 text-sm font-jakarta-regular leading-6">
-                  {reportData.summary}
-                </Text>
-              </View>
-
-              {/* Key Blockers */}
+              {/* THE GOOD NEWS - Immunity Badge */}
               <View
-                className="rounded-2xl p-5 border"
+                className="rounded-xl p-3 mb-4 flex-row items-center"
                 style={{
-                  backgroundColor: `${reportData.color}10`,
-                  borderColor: `${reportData.color}50`,
+                  backgroundColor: "rgba(215,255,0,0.04)",
+                  borderWidth: 1,
+                  borderColor: reportData?.color || "#D7FF00",
                 }}
               >
-                <Text
-                  className="text-xs font-jakarta-bold mb-2"
-                  style={{ color: reportData.color }}
+                <View
+                  className="w-12 h-12 rounded-md items-center justify-center mr-3"
+                  style={{
+                    backgroundColor: "#070707",
+                    borderWidth: 1,
+                    borderColor: reportData?.color || "#D7FF00",
+                  }}
                 >
-                  ⚠️ KEY BLOCKERS
+                  <Text className="text-2xl">🛡️</Text>
+                </View>
+                <View className="flex-1">
+                  <Text
+                    className="text-xs font-jakarta-bold"
+                    style={{ color: reportData?.color || "#D7FF00" }}
+                  >
+                    IMMUNITY
+                  </Text>
+                  <Text className="text-white text-base font-jakarta-bold">
+                    Resilient Earner
+                  </Text>
+                  <Text className="text-gray-300 text-sm mt-1">
+                    You maintained income stability despite the laptop crash.
+                  </Text>
+                </View>
+              </View>
+
+              {/* THE DIAGNOSIS - System Alert (Terminal style) */}
+              <View
+                className="rounded-2xl p-4 mb-4"
+                style={{
+                  backgroundColor: "#111315",
+                  borderWidth: 1,
+                  borderColor: "#1e1f22",
+                }}
+              >
+                <View className="flex-row items-start">
+                  <View className="w-10 mr-3 items-center justify-center">
+                    <Text className="text-[#4ECDC4] text-2xl">🔬</Text>
+                  </View>
+                  <View className="flex-1">
+                    <Text className="text-[#FFD93D] text-xs font-jakarta-bold mb-1">
+                      SYSTEM ALERT
+                    </Text>
+                    <Text
+                      className="text-white text-base font-jakarta-bold"
+                      style={{ fontFamily: "monospace" }}
+                    >
+                      Diagnosis: Liquidity Crunch
+                    </Text>
+                    <Text
+                      className="text-gray-300 text-sm mt-2"
+                      style={{ fontFamily: "monospace" }}
+                    >
+                      You rely too heavily on daily cash flow and lack a 30-day
+                      buffer.
+                    </Text>
+                  </View>
+                </View>
+              </View>
+
+              {/* KEY BLOCKERS - Hazard Pills */}
+              <View className="mb-4">
+                <Text className="text-gray-400 text-xs font-jakarta-bold mb-3">
+                  BEHAVIORAL BLOCKERS
                 </Text>
-                <Text className="text-white text-base font-jakarta-bold mb-3">
-                  What&apos;s Holding You Back
-                </Text>
-                <View className="gap-2">
-                  {reportData.keyBlockers.map(
-                    (blocker: string, index: number) => (
-                      <View key={index} className="flex-row items-start">
-                        <Text
-                          className="text-lg mr-2"
-                          style={{ color: reportData.color }}
-                        >
-                          •
-                        </Text>
-                        <Text className="text-gray-300 text-sm font-jakarta-regular flex-1 leading-5">
-                          {blocker}
-                        </Text>
-                      </View>
-                    )
-                  )}
+                <View className="flex-row justify-between">
+                  <View
+                    className="flex-1 rounded-full py-2 px-3 mr-2 items-center"
+                    style={{
+                      backgroundColor: "rgba(255,217,61,0.06)",
+                      borderWidth: 1,
+                      borderColor: "#FFD93D",
+                    }}
+                  >
+                    <Text className="text-[#FFD93D] font-jakarta-medium">
+                      Behavioral: Loss Aversion
+                    </Text>
+                  </View>
+
+                  <View
+                    className="flex-1 rounded-full py-2 px-3 mx-2 items-center"
+                    style={{
+                      backgroundColor: "rgba(255,107,107,0.06)",
+                      borderWidth: 1,
+                      borderColor: "#FF6B6B",
+                    }}
+                  >
+                    <Text className="text-[#FF6B6B] font-jakarta-medium">
+                      Structural: High Rent
+                    </Text>
+                  </View>
+
+                  <View
+                    className="flex-1 rounded-full py-2 px-3 ml-2 items-center"
+                    style={{
+                      backgroundColor: "rgba(255,217,61,0.06)",
+                      borderWidth: 1,
+                      borderColor: "#FFD93D",
+                    }}
+                  >
+                    <Text className="text-[#FFD93D] font-jakarta-medium">
+                      Habit: Late Payments
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>
