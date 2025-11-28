@@ -1,6 +1,7 @@
 // Mocked signup (no Clerk/backend) for local development
 import { Link, router } from "expo-router";
 import { useRef, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   Alert,
   Image,
@@ -58,6 +59,13 @@ const SignUp = () => {
     // simple mock verification
     if (verification.code === expectedCode) {
       setVerification({ ...verification, state: "success", error: "" });
+      // save user locally
+      const user = {
+        name: form.name,
+        email: form.email,
+        createdAt: Date.now(),
+      };
+      AsyncStorage.setItem("arth_user", JSON.stringify(user)).catch(() => {});
       setShowSuccessModal(true);
     } else {
       setVerification({
@@ -271,11 +279,13 @@ const SignUp = () => {
           >
             <View
               style={{
-                backgroundColor: "#ffffff",
+                backgroundColor: "#070707",
                 paddingHorizontal: 20,
                 paddingVertical: 24,
                 borderRadius: 16,
                 minHeight: 300,
+                borderWidth: 1,
+                borderColor: "rgba(215,255,0,0.12)",
               }}
             >
               <Text
@@ -283,12 +293,19 @@ const SignUp = () => {
                   fontFamily: "Jakarta-ExtraBold",
                   fontSize: 20,
                   marginBottom: 8,
+                  color: "#FFFFFF",
                 }}
               >
                 Verification
               </Text>
-              <Text style={{ fontFamily: "Jakarta-Regular", marginBottom: 12 }}>
-                We've sent a verification code to {form.email}.
+              <Text
+                style={{
+                  fontFamily: "Jakarta-Regular",
+                  marginBottom: 12,
+                  color: "#9CA3AF",
+                }}
+              >
+                We have sent a verification code to {form.email}.
               </Text>
               <TextInput
                 value={verification.code}
@@ -299,8 +316,8 @@ const SignUp = () => {
                 placeholderTextColor="#6B7280"
                 keyboardType="numeric"
                 style={{
-                  backgroundColor: "#F3F4F6",
-                  color: "#111827",
+                  backgroundColor: "#1E1E1E",
+                  color: "#FFFFFF",
                   height: 48,
                   borderRadius: 8,
                   paddingHorizontal: 12,
@@ -317,13 +334,13 @@ const SignUp = () => {
                   marginTop: 16,
                   width: "100%",
                   borderRadius: 8,
-                  backgroundColor: "#0EA5A0",
+                  backgroundColor: "#D7FF00",
                   height: 48,
                   alignItems: "center",
                   justifyContent: "center",
                 }}
               >
-                <Text style={{ fontFamily: "Jakarta-Bold", color: "#ffffff" }}>
+                <Text style={{ fontFamily: "Jakarta-Bold", color: "#070707" }}>
                   Verify Email
                 </Text>
               </TouchableOpacity>
@@ -335,11 +352,13 @@ const SignUp = () => {
       <ReactNativeModal isVisible={showSuccessModal}>
         <View
           style={{
-            backgroundColor: "#ffffff",
+            backgroundColor: "#070707",
             paddingHorizontal: 20,
             paddingVertical: 24,
             borderRadius: 16,
             minHeight: 300,
+            borderWidth: 1,
+            borderColor: "rgba(215,255,0,0.12)",
           }}
         >
           <View
@@ -349,9 +368,11 @@ const SignUp = () => {
               alignSelf: "center",
               marginVertical: 12,
               borderRadius: 55,
-              backgroundColor: "#ECFCCB",
+              backgroundColor: "rgba(215,255,0,0.06)",
               alignItems: "center",
               justifyContent: "center",
+              borderWidth: 2,
+              borderColor: "#D7FF00",
             }}
           >
             <Text style={{ fontSize: 28 }}>✅</Text>
@@ -361,6 +382,7 @@ const SignUp = () => {
               fontSize: 20,
               fontFamily: "Jakarta-Bold",
               textAlign: "center",
+              color: "#FFFFFF",
             }}
           >
             Verified
@@ -368,7 +390,7 @@ const SignUp = () => {
           <Text
             style={{
               fontSize: 14,
-              color: "#6B7280",
+              color: "#9CA3AF",
               textAlign: "center",
               marginTop: 8,
             }}

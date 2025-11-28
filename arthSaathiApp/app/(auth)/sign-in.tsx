@@ -1,5 +1,6 @@
-import { Link, router } from 'expo-router'
-import { useRef, useState } from 'react'
+import { Link, router } from "expo-router";
+import { useRef, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   Alert,
   Image,
@@ -10,30 +11,33 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
-} from 'react-native'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { ReactNativeModal } from 'react-native-modal'
+} from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { ReactNativeModal } from "react-native-modal";
 
-import { images } from '@/constants'
+import { images } from "@/constants";
 
 export default function SignIn() {
-  const [form, setForm] = useState({ email: '', password: '' })
-  const [showSuccessModal, setShowSuccessModal] = useState(false)
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const emailRef = useRef<TextInput | null>(null)
-  const passwordRef = useRef<TextInput | null>(null)
+  const emailRef = useRef<TextInput | null>(null);
+  const passwordRef = useRef<TextInput | null>(null);
 
   const onSignInPress = () => {
     if (!form.email || !form.password) {
-      Alert.alert('Error', 'Please enter email and password')
-      return
+      Alert.alert("Error", "Please enter email and password");
+      return;
     }
     // Mock auth: accept any non-empty credentials
-    setShowSuccessModal(true)
-  }
+    // Save minimal user profile locally
+    const user = { email: form.email, createdAt: Date.now() };
+    AsyncStorage.setItem("arth_user", JSON.stringify(user)).catch(() => {});
+    setShowSuccessModal(true);
+  };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#121212' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#121212" }}>
       <TouchableWithoutFeedback
         onPress={() => Keyboard.dismiss()}
         accessible={false}
@@ -45,17 +49,17 @@ export default function SignIn() {
           enableOnAndroid={true}
           showsVerticalScrollIndicator={false}
         >
-          <View style={{ position: 'relative', width: '100%', height: 250 }}>
+          <View style={{ position: "relative", width: "100%", height: 250 }}>
             <Image
               source={images.formHeader}
-              style={{ zIndex: 0, width: '100%', height: 250 }}
+              style={{ zIndex: 0, width: "100%", height: 250 }}
             />
             <Text
               style={{
-                color: '#FFFFFF',
+                color: "#FFFFFF",
                 fontSize: 22,
-                fontFamily: 'Jakarta-SemiBold',
-                position: 'absolute',
+                fontFamily: "Jakarta-SemiBold",
+                position: "absolute",
                 bottom: 20,
                 left: 20,
               }}
@@ -67,9 +71,9 @@ export default function SignIn() {
           <View style={{ padding: 20 }}>
             <Text
               style={{
-                color: '#FFFFFF',
+                color: "#FFFFFF",
                 marginBottom: 8,
-                fontFamily: 'Jakarta-Medium',
+                fontFamily: "Jakarta-Medium",
               }}
             >
               Email Address
@@ -88,21 +92,21 @@ export default function SignIn() {
               keyboardType="email-address"
               autoCapitalize="none"
               style={{
-                backgroundColor: '#1E1E1E',
-                color: '#FFFFFF',
+                backgroundColor: "#1E1E1E",
+                color: "#FFFFFF",
                 height: 52,
                 borderRadius: 999,
                 paddingHorizontal: 16,
                 marginBottom: 12,
-                fontFamily: 'Jakarta-Regular',
+                fontFamily: "Jakarta-Regular",
               }}
             />
 
             <Text
               style={{
-                color: '#FFFFFF',
+                color: "#FFFFFF",
                 marginBottom: 8,
-                fontFamily: 'Jakarta-Medium',
+                fontFamily: "Jakarta-Medium",
               }}
             >
               Password
@@ -118,13 +122,13 @@ export default function SignIn() {
               placeholderTextColor="#9CA3AF"
               secureTextEntry={true}
               style={{
-                backgroundColor: '#1E1E1E',
-                color: '#FFFFFF',
+                backgroundColor: "#1E1E1E",
+                color: "#FFFFFF",
                 height: 52,
                 borderRadius: 999,
                 paddingHorizontal: 16,
                 marginBottom: 12,
-                fontFamily: 'Jakarta-Regular',
+                fontFamily: "Jakarta-Regular",
               }}
             />
 
@@ -132,26 +136,26 @@ export default function SignIn() {
               onPress={onSignInPress}
               style={{
                 marginTop: 6,
-                width: '100%',
+                width: "100%",
                 borderRadius: 999,
-                backgroundColor: '#D7FF00',
+                backgroundColor: "#D7FF00",
                 height: 52,
-                alignItems: 'center',
-                justifyContent: 'center',
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              <Text style={{ fontFamily: 'Jakarta-Bold', color: '#070707' }}>
+              <Text style={{ fontFamily: "Jakarta-Bold", color: "#070707" }}>
                 Sign In
               </Text>
             </TouchableOpacity>
 
             <Link
               href="/sign-up"
-              style={{ alignSelf: 'center', marginTop: 16 }}
+              style={{ alignSelf: "center", marginTop: 16 }}
             >
-              <Text style={{ color: '#FFFFFF', fontSize: 16 }}>
-                Don't have an account?{' '}
-                <Text style={{ color: '#D7FF00' }}>Create Account</Text>
+              <Text style={{ color: "#FFFFFF", fontSize: 16 }}>
+                Don't have an account?{" "}
+                <Text style={{ color: "#D7FF00" }}>Create Account</Text>
               </Text>
             </Link>
           </View>
@@ -159,29 +163,33 @@ export default function SignIn() {
           <ReactNativeModal
             isVisible={showSuccessModal}
             onBackdropPress={() => {
-              setShowSuccessModal(false)
-              router.replace('/(root)/(tabs)/home')
+              setShowSuccessModal(false);
+              router.replace("/(root)/(tabs)/home");
             }}
           >
             <View
               style={{
-                backgroundColor: '#ffffff',
+                backgroundColor: "#070707",
                 paddingHorizontal: 20,
                 paddingVertical: 24,
                 borderRadius: 16,
                 minHeight: 300,
+                borderWidth: 1,
+                borderColor: "rgba(215,255,0,0.12)",
               }}
             >
               <View
                 style={{
                   width: 110,
                   height: 110,
-                  alignSelf: 'center',
+                  alignSelf: "center",
                   marginVertical: 12,
                   borderRadius: 55,
-                  backgroundColor: '#ECFCCB',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  backgroundColor: "rgba(215,255,0,0.06)",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderWidth: 2,
+                  borderColor: "#D7FF00",
                 }}
               >
                 <Text style={{ fontSize: 28 }}>✅</Text>
@@ -189,8 +197,9 @@ export default function SignIn() {
               <Text
                 style={{
                   fontSize: 20,
-                  fontFamily: 'Jakarta-Bold',
-                  textAlign: 'center',
+                  fontFamily: "Jakarta-Bold",
+                  textAlign: "center",
+                  color: "#FFFFFF",
                 }}
               >
                 Signed In
@@ -198,8 +207,8 @@ export default function SignIn() {
               <Text
                 style={{
                   fontSize: 14,
-                  color: '#6B7280',
-                  textAlign: 'center',
+                  color: "#9CA3AF",
+                  textAlign: "center",
                   marginTop: 8,
                 }}
               >
@@ -207,20 +216,20 @@ export default function SignIn() {
               </Text>
               <TouchableOpacity
                 onPress={() => {
-                  setShowSuccessModal(false)
-                  router.replace('/(root)/(tabs)/home')
+                  setShowSuccessModal(false);
+                  router.replace("/(root)/(tabs)/home");
                 }}
                 style={{
                   marginTop: 16,
-                  width: '100%',
+                  width: "100%",
                   borderRadius: 8,
-                  backgroundColor: '#D7FF00',
+                  backgroundColor: "#D7FF00",
                   height: 48,
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                <Text style={{ fontFamily: 'Jakarta-Bold', color: '#070707' }}>
+                <Text style={{ fontFamily: "Jakarta-Bold", color: "#070707" }}>
                   Go to Home
                 </Text>
               </TouchableOpacity>
@@ -229,5 +238,5 @@ export default function SignIn() {
         </KeyboardAwareScrollView>
       </TouchableWithoutFeedback>
     </SafeAreaView>
-  )
+  );
 }

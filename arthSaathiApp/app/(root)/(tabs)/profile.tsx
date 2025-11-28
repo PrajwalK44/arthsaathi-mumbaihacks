@@ -1,8 +1,24 @@
 import { router } from "expo-router";
 import { Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Profile() {
+  const [user, setUser] = useState<{
+    name?: string;
+    email?: string;
+    createdAt?: number;
+  } | null>(null);
+
+  useEffect(() => {
+    AsyncStorage.getItem("arth_user")
+      .then((s) => {
+        if (s) setUser(JSON.parse(s));
+      })
+      .catch(() => {});
+  }, []);
+
   const handleSignOut = () => {
     Alert.alert(
       "Sign Out",
@@ -17,6 +33,7 @@ export default function Profile() {
           style: "destructive",
           onPress: () => {
             // Clear any user data/tokens here
+            AsyncStorage.removeItem("arth_user").catch(() => {});
             router.replace("/(auth)/welcome");
           },
         },
@@ -84,11 +101,11 @@ export default function Profile() {
         <View style={{ paddingHorizontal: 20, marginBottom: 24 }}>
           <View
             style={{
-              backgroundColor: "rgba(30, 30, 30, 0.95)",
+              backgroundColor: "rgba(30,30,30,0.95)",
               borderRadius: 20,
               padding: 24,
               borderWidth: 1,
-              borderColor: "rgba(215, 255, 0, 0.3)",
+              borderColor: "rgba(215,255,0,0.3)",
               alignItems: "center",
             }}
           >
@@ -97,7 +114,7 @@ export default function Profile() {
                 width: 80,
                 height: 80,
                 borderRadius: 40,
-                backgroundColor: "rgba(215, 255, 0, 0.2)",
+                backgroundColor: "rgba(215,255,0,0.12)",
                 alignItems: "center",
                 justifyContent: "center",
                 marginBottom: 16,
@@ -116,7 +133,7 @@ export default function Profile() {
                 marginBottom: 4,
               }}
             >
-              Rajesh Kumar
+              {user?.name || "Your Name"}
             </Text>
             <Text
               style={{
@@ -126,7 +143,7 @@ export default function Profile() {
                 marginBottom: 16,
               }}
             >
-              rajesh.kumar@email.com
+              {user?.email || "your.email@example.com"}
             </Text>
 
             <View
@@ -152,7 +169,12 @@ export default function Profile() {
                     fontFamily: "Jakarta-Bold",
                   }}
                 >
-                  47
+                  {user?.createdAt
+                    ? Math.max(
+                        0,
+                        Math.floor((Date.now() - user.createdAt) / 86400000)
+                      )
+                    : 0}
                 </Text>
                 <Text
                   style={{
@@ -182,7 +204,7 @@ export default function Profile() {
                     fontFamily: "Jakarta-Bold",
                   }}
                 >
-                  ₹3.2L
+                  ₹0
                 </Text>
                 <Text
                   style={{
