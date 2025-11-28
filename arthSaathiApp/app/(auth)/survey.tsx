@@ -21,6 +21,7 @@ interface SurveyData {
 
 const Survey = () => {
   const [currentCard, setCurrentCard] = useState(0);
+  const [showLoading, setShowLoading] = useState(false);
   const [surveyData, setSurveyData] = useState<SurveyData>({
     role: "",
     avg_monthly_income: 22000,
@@ -113,9 +114,9 @@ const Survey = () => {
         cardAnimation.setValue(0);
       });
     } else {
-      // Survey complete - navigate to home
+      // Survey complete - show loading then navigate to home
       console.log("Survey Data:", surveyData);
-      router.replace("/(root)/(tabs)/home");
+      setShowLoading(true);
     }
   };
 
@@ -403,6 +404,21 @@ const Survey = () => {
         return null;
     }
   };
+
+  if (showLoading) {
+    return (
+      <LoadingScreen
+        messages={[
+          "Simulating 'Gamer' lifestyle shocks...",
+          "Ingesting steem_sale_probability...",
+          "Calibrating risk appetite...",
+          "Generating synthetic financial world...",
+        ]}
+        onComplete={() => router.replace("/(root)/(tabs)/home")}
+        duration={3000}
+      />
+    );
+  }
 
   return (
     <SafeAreaView className="flex-1 bg-[#070707]">

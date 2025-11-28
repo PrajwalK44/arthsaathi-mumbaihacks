@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const { width } = Dimensions.get("window");
 
@@ -33,6 +34,7 @@ const DynamicPersona = () => {
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [selectedOption, setSelectedOption] = useState<string>("");
   const [showReport, setShowReport] = useState(false);
+  const [showLoadingScreen, setShowLoadingScreen] = useState(false);
   const cardAnimation = new Animated.Value(0);
 
   // Mock questions from backend
@@ -151,8 +153,8 @@ const DynamicPersona = () => {
         cardAnimation.setValue(0);
       });
     } else {
-      // Generate report
-      setShowReport(true);
+      // Show loading screen before report
+      setShowLoadingScreen(true);
     }
   };
 
@@ -298,6 +300,24 @@ const DynamicPersona = () => {
       },
     };
   };
+
+  if (showLoadingScreen) {
+    return (
+      <LoadingScreen
+        messages={[
+          "Analyzing your financial psychology...",
+          "Mapping behavioral patterns...",
+          "Calculating risk tolerance...",
+          "Building your persona profile...",
+        ]}
+        onComplete={() => {
+          setShowLoadingScreen(false);
+          setShowReport(true);
+        }}
+        duration={2500}
+      />
+    );
+  }
 
   if (showReport) {
     const report = generatePersonaReport();

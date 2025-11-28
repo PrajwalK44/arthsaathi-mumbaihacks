@@ -8,6 +8,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import LoadingScreen from "@/components/LoadingScreen";
 
 // Import assessment data
 const assessmentData = require("@/data/assessment-questions.json");
@@ -33,6 +34,7 @@ export default function Survey() {
   const [responses, setResponses] = useState<{ [key: string]: string }>({});
   const [baselineProfile, setBaselineProfile] = useState<string>("");
   const [deepDiveQuestions, setDeepDiveQuestions] = useState<Question[]>([]);
+  const [showLoadingScreen, setShowLoadingScreen] = useState(false);
   const fadeAnim = new Animated.Value(1);
 
   const baselineQuestions: Question[] =
@@ -67,8 +69,8 @@ export default function Survey() {
       } else {
         // Deep dive stage
         if (currentQuestionIndex === deepDiveQuestions.length - 1) {
-          // Assessment complete - generate report
-          generateReport();
+          // Assessment complete - show loading screen
+          setShowLoadingScreen(true);
         } else {
           setCurrentQuestionIndex(currentQuestionIndex + 1);
         }
@@ -155,8 +157,23 @@ export default function Survey() {
     );
   }
 
+  if (showLoadingScreen) {
+    return (
+      <LoadingScreen
+        messages={[
+          "Analyzing your financial psychology...",
+          "Mapping behavioral patterns...",
+          "Calculating archetype scores...",
+          "Generating personalized report...",
+        ]}
+        onComplete={() => generateReport()}
+        duration={2500}
+      />
+    );
+  }
+
   return (
-    <SafeAreaView className="flex-1 bg-[#070707]">
+    <SafeAreaView className="flex-1 bg-[#070707]">{/* Header */}
       {/* Header */}
       <View className="p-6 pb-4">
         <View className="flex-row items-center justify-between mb-4">

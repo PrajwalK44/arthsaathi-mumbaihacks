@@ -8,6 +8,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import LoadingScreen from "@/components/LoadingScreen";
 
 interface Choice {
   id: string;
@@ -50,6 +51,7 @@ const PersonaSimulation = () => {
   const [selectedChoiceId, setSelectedChoiceId] = useState<string>("");
   const [responses, setResponses] = useState<SimulationResponse[]>([]);
   const [showReport, setShowReport] = useState(false);
+  const [showLoadingScreen, setShowLoadingScreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<"event" | "future" | "psyche">(
     "event"
@@ -160,8 +162,8 @@ const PersonaSimulation = () => {
         setSelectedChoiceId("");
         fadeAnim.setValue(1);
       } else {
-        // Show report
-        setShowReport(true);
+        // Show loading screen before report
+        setShowLoadingScreen(true);
       }
     });
   };
@@ -270,6 +272,24 @@ const PersonaSimulation = () => {
       projection12Month,
     };
   };
+
+  if (showLoadingScreen) {
+    return (
+      <LoadingScreen
+        messages={[
+          `Analyzing ${persona.name}'s financial choices...`,
+          "Calculating cumulative impact...",
+          "Mapping behavioral patterns...",
+          "Generating predictive scenarios...",
+        ]}
+        onComplete={() => {
+          setShowLoadingScreen(false);
+          setShowReport(true);
+        }}
+        duration={2500}
+      />
+    );
+  }
 
   if (showReport) {
     const report = generateSimulationReport();
