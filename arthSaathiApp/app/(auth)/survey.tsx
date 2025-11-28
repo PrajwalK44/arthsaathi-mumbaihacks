@@ -3,7 +3,6 @@ import { useState } from "react";
 import {
   Animated,
   Dimensions,
-  Image,
   Text,
   TouchableOpacity,
   View,
@@ -136,89 +135,45 @@ const Survey = () => {
   };
 
   const renderCard0 = () => (
-    <View
-      style={{
-        backgroundColor: "rgba(30, 30, 30, 0.95)",
-        borderRadius: 24,
-        padding: 24,
-        width: width - 48,
-        borderWidth: 2,
-        borderColor:
-          surveyData.role !== "" ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
-        shadowColor: "#D7FF00",
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: surveyData.role !== "" ? 0.3 : 0,
-        shadowRadius: 16,
-        elevation: 8,
-      }}
-    >
-      <Text
-        style={{
-          color: "#D7FF00",
-          fontSize: 14,
-          fontFamily: "Jakarta-Medium",
-          marginBottom: 8,
-        }}
-      >
+    <View className="bg-neutral-900/95 rounded-3xl p-6 border-2 shadow-2xl" style={{
+      width: width - 48,
+      borderColor: surveyData.role !== "" ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
+      shadowColor: "#D7FF00",
+      shadowOpacity: surveyData.role !== "" ? 0.3 : 0,
+      shadowRadius: 16,
+      shadowOffset: { width: 0, height: 8 },
+      elevation: 8,
+    }}>
+      <Text className="text-[#D7FF00] text-sm font-jakarta-medium mb-2">
         STEP 1 OF 4
       </Text>
-      <Text
-        style={{
-          color: "#FFFFFF",
-          fontSize: 24,
-          fontFamily: "Jakarta-Bold",
-          marginBottom: 24,
-        }}
-      >
+      <Text className="text-white text-2xl font-jakarta-bold mb-6">
         How do you earn your money?
       </Text>
 
-      <View
-        style={{
-          flexDirection: "row",
-          flexWrap: "wrap",
-          gap: 12,
-        }}
-      >
+      <View className="flex-row flex-wrap gap-3">
         {roles.map((role) => (
           <TouchableOpacity
             key={role.id}
             onPress={() => setSurveyData({ ...surveyData, role: role.id })}
+            className="rounded-2xl border-2 items-center justify-center p-3"
             style={{
               width: (width - 120) / 2,
               aspectRatio: 1,
-              backgroundColor:
-                surveyData.role === role.id ? "#D7FF00" : "#1E1E1E",
-              borderRadius: 16,
-              borderWidth: 2,
-              borderColor:
-                surveyData.role === role.id
-                  ? "#D7FF00"
-                  : "rgba(255, 255, 255, 0.1)",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: 12,
+              backgroundColor: surveyData.role === role.id ? "#D7FF00" : "#1E1E1E",
+              borderColor: surveyData.role === role.id ? "#D7FF00" : "rgba(255, 255, 255, 0.1)",
             }}
           >
-            <Text style={{ fontSize: 36, marginBottom: 8 }}>{role.icon}</Text>
+            <Text className="text-4xl mb-2">{role.icon}</Text>
             <Text
-              style={{
-                color: surveyData.role === role.id ? "#070707" : "#FFFFFF",
-                fontSize: 14,
-                fontFamily: "Jakarta-Bold",
-                textAlign: "center",
-              }}
+              className="text-sm font-jakarta-bold text-center"
+              style={{ color: surveyData.role === role.id ? "#070707" : "#FFFFFF" }}
             >
               {role.label}
             </Text>
             <Text
-              style={{
-                color: surveyData.role === role.id ? "#333333" : "#9CA3AF",
-                fontSize: 10,
-                fontFamily: "Jakarta-Regular",
-                textAlign: "center",
-                marginTop: 4,
-              }}
+              className="text-xs font-jakarta-regular text-center mt-1"
+              style={{ color: surveyData.role === role.id ? "#333333" : "#9CA3AF" }}
             >
               {role.subtitle}
             </Text>

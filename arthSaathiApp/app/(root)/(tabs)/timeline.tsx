@@ -1,79 +1,79 @@
-import { ScrollView, Text, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { ScrollView, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Timeline() {
   const transactions = [
     {
-      date: 'Today',
+      date: "Today",
       items: [
         {
-          type: 'income',
-          title: 'Swiggy Delivery Payment',
-          time: '2:30 PM',
+          type: "income",
+          title: "Swiggy Delivery Payment",
+          time: "2:30 PM",
           amount: 450,
-          category: 'Delivery',
+          category: "Delivery",
         },
         {
-          type: 'expense',
-          title: 'Lunch at Cafe',
-          time: '1:15 PM',
+          type: "expense",
+          title: "Lunch at Cafe",
+          time: "1:15 PM",
           amount: 180,
-          category: 'Food',
+          category: "Food",
         },
         {
-          type: 'income',
-          title: 'Zomato Order Completed',
-          time: '11:45 AM',
+          type: "income",
+          title: "Zomato Order Completed",
+          time: "11:45 AM",
           amount: 380,
-          category: 'Delivery',
+          category: "Delivery",
         },
       ],
     },
     {
-      date: 'Yesterday',
+      date: "Yesterday",
       items: [
         {
-          type: 'expense',
-          title: 'Mobile Recharge',
-          time: '8:20 PM',
+          type: "expense",
+          title: "Mobile Recharge",
+          time: "8:20 PM",
           amount: 299,
-          category: 'Bills',
+          category: "Bills",
         },
         {
-          type: 'income',
-          title: 'Daily Earnings',
-          time: '6:30 PM',
+          type: "income",
+          title: "Daily Earnings",
+          time: "6:30 PM",
           amount: 1200,
-          category: 'Delivery',
+          category: "Delivery",
         },
         {
-          type: 'expense',
-          title: 'Grocery Shopping',
-          time: '3:10 PM',
+          type: "expense",
+          title: "Grocery Shopping",
+          time: "3:10 PM",
           amount: 850,
-          category: 'Shopping',
+          category: "Shopping",
         },
       ],
     },
-  ]
+  ];
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#070707' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#070707" }}>
       <View style={{ padding: 20, paddingBottom: 12 }}>
         <Text
           style={{
-            color: '#FFFFFF',
+            color: "#FFFFFF",
             fontSize: 28,
-            fontFamily: 'Jakarta-Bold',
+            fontFamily: "Jakarta-Bold",
           }}
         >
           Timeline
         </Text>
         <Text
           style={{
-            color: '#9CA3AF',
+            color: "#9CA3AF",
             fontSize: 14,
-            fontFamily: 'Jakarta-Regular',
+            fontFamily: "Jakarta-Regular",
             marginTop: 4,
           }}
         >
@@ -89,21 +89,23 @@ export default function Timeline() {
         {/* Summary Card */}
         <View
           style={{
-            backgroundColor: 'rgba(30, 30, 30, 0.95)',
+            backgroundColor: "rgba(30, 30, 30, 0.95)",
             borderRadius: 16,
             padding: 20,
             marginBottom: 24,
             borderWidth: 1,
-            borderColor: 'rgba(255, 255, 255, 0.1)',
+            borderColor: "rgba(255, 255, 255, 0.1)",
           }}
         >
-          <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-            <View style={{ alignItems: 'center' }}>
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-around" }}
+          >
+            <View style={{ alignItems: "center" }}>
               <Text
                 style={{
-                  color: '#9CA3AF',
+                  color: "#9CA3AF",
                   fontSize: 11,
-                  fontFamily: 'Jakarta-Regular',
+                  fontFamily: "Jakarta-Regular",
                   marginBottom: 6,
                 }}
               >
@@ -111,9 +113,9 @@ export default function Timeline() {
               </Text>
               <Text
                 style={{
-                  color: '#4ECDC4',
+                  color: "#4ECDC4",
                   fontSize: 24,
-                  fontFamily: 'Jakarta-Bold',
+                  fontFamily: "Jakarta-Bold",
                 }}
               >
                 +₹8,240
@@ -122,15 +124,15 @@ export default function Timeline() {
             <View
               style={{
                 width: 1,
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                backgroundColor: "rgba(255, 255, 255, 0.1)",
               }}
             />
-            <View style={{ alignItems: 'center' }}>
+            <View style={{ alignItems: "center" }}>
               <Text
                 style={{
-                  color: '#9CA3AF',
+                  color: "#9CA3AF",
                   fontSize: 11,
-                  fontFamily: 'Jakarta-Regular',
+                  fontFamily: "Jakarta-Regular",
                   marginBottom: 6,
                 }}
               >
@@ -138,9 +140,9 @@ export default function Timeline() {
               </Text>
               <Text
                 style={{
-                  color: '#FFFFFF',
+                  color: "#FFFFFF",
                   fontSize: 24,
-                  fontFamily: 'Jakarta-Bold',
+                  fontFamily: "Jakarta-Bold",
                 }}
               >
                 47
@@ -154,11 +156,11 @@ export default function Timeline() {
           <View key={groupIndex} style={{ marginBottom: 24 }}>
             <Text
               style={{
-                color: '#9CA3AF',
+                color: "#9CA3AF",
                 fontSize: 13,
-                fontFamily: 'Jakarta-Bold',
+                fontFamily: "Jakarta-Bold",
                 marginBottom: 12,
-                textTransform: 'uppercase',
+                textTransform: "uppercase",
               }}
             >
               {group.date}
@@ -168,17 +170,17 @@ export default function Timeline() {
               <View
                 key={itemIndex}
                 style={{
-                  backgroundColor: '#1E1E1E',
+                  backgroundColor: "#1E1E1E",
                   borderRadius: 12,
                   padding: 16,
                   marginBottom: 8,
-                  flexDirection: 'row',
-                  alignItems: 'center',
+                  flexDirection: "row",
+                  alignItems: "center",
                   borderWidth: 1,
                   borderColor:
-                    item.type === 'income'
-                      ? 'rgba(78, 205, 196, 0.2)'
-                      : 'rgba(255, 107, 107, 0.2)',
+                    item.type === "income"
+                      ? "rgba(78, 205, 196, 0.2)"
+                      : "rgba(255, 107, 107, 0.2)",
                 }}
               >
                 <View
@@ -187,25 +189,25 @@ export default function Timeline() {
                     height: 40,
                     borderRadius: 20,
                     backgroundColor:
-                      item.type === 'income'
-                        ? 'rgba(78, 205, 196, 0.2)'
-                        : 'rgba(255, 107, 107, 0.2)',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                      item.type === "income"
+                        ? "rgba(78, 205, 196, 0.2)"
+                        : "rgba(255, 107, 107, 0.2)",
+                    alignItems: "center",
+                    justifyContent: "center",
                     marginRight: 12,
                   }}
                 >
                   <Text style={{ fontSize: 18 }}>
-                    {item.type === 'income' ? '↓' : '↑'}
+                    {item.type === "income" ? "↓" : "↑"}
                   </Text>
                 </View>
 
                 <View style={{ flex: 1 }}>
                   <Text
                     style={{
-                      color: '#FFFFFF',
+                      color: "#FFFFFF",
                       fontSize: 14,
-                      fontFamily: 'Jakarta-Bold',
+                      fontFamily: "Jakarta-Bold",
                       marginBottom: 2,
                     }}
                   >
@@ -213,9 +215,9 @@ export default function Timeline() {
                   </Text>
                   <Text
                     style={{
-                      color: '#9CA3AF',
+                      color: "#9CA3AF",
                       fontSize: 11,
-                      fontFamily: 'Jakarta-Regular',
+                      fontFamily: "Jakarta-Regular",
                     }}
                   >
                     {item.time} • {item.category}
@@ -224,12 +226,12 @@ export default function Timeline() {
 
                 <Text
                   style={{
-                    color: item.type === 'income' ? '#4ECDC4' : '#FF6B6B',
+                    color: item.type === "income" ? "#4ECDC4" : "#FF6B6B",
                     fontSize: 16,
-                    fontFamily: 'Jakarta-Bold',
+                    fontFamily: "Jakarta-Bold",
                   }}
                 >
-                  {item.type === 'income' ? '+' : '-'}₹{item.amount}
+                  {item.type === "income" ? "+" : "-"}₹{item.amount}
                 </Text>
               </View>
             ))}
@@ -237,5 +239,5 @@ export default function Timeline() {
         ))}
       </ScrollView>
     </SafeAreaView>
-  )
+  );
 }

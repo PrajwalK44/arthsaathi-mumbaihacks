@@ -1,73 +1,73 @@
-import { router } from 'expo-router'
-import { Alert, ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { router } from "expo-router";
+import { Alert, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Profile() {
   const handleSignOut = () => {
     Alert.alert(
-      'Sign Out',
-      'Are you sure you want to sign out?',
+      "Sign Out",
+      "Are you sure you want to sign out?",
       [
         {
-          text: 'Cancel',
-          style: 'cancel',
+          text: "Cancel",
+          style: "cancel",
         },
         {
-          text: 'Sign Out',
-          style: 'destructive',
+          text: "Sign Out",
+          style: "destructive",
           onPress: () => {
             // Clear any user data/tokens here
-            router.replace('/(auth)/welcome')
+            router.replace("/(auth)/welcome");
           },
         },
       ],
       { cancelable: true }
-    )
-  }
+    );
+  };
   const menuItems = [
     {
-      section: 'Account',
+      section: "Account",
       items: [
-        { icon: '👤', label: 'Personal Information', chevron: true },
-        { icon: '💼', label: 'Work Profile', chevron: true },
-        { icon: '🔒', label: 'Privacy & Security', chevron: true },
+        { icon: "👤", label: "Personal Information", chevron: true },
+        { icon: "💼", label: "Work Profile", chevron: true },
+        { icon: "🔒", label: "Privacy & Security", chevron: true },
       ],
     },
     {
-      section: 'Preferences',
+      section: "Preferences",
       items: [
-        { icon: '🔔', label: 'Notifications', chevron: true },
-        { icon: '🌙', label: 'Dark Mode', toggle: true, value: true },
-        { icon: '🌍', label: 'Language', value: 'English', chevron: true },
+        { icon: "🔔", label: "Notifications", chevron: true },
+        { icon: "🌙", label: "Dark Mode", toggle: true, value: true },
+        { icon: "🌍", label: "Language", value: "English", chevron: true },
       ],
     },
     {
-      section: 'Support',
+      section: "Support",
       items: [
-        { icon: '💬', label: 'Help Center', chevron: true },
-        { icon: '📧', label: 'Contact Support', chevron: true },
-        { icon: '⭐', label: 'Rate ArthSaathi', chevron: true },
+        { icon: "💬", label: "Help Center", chevron: true },
+        { icon: "📧", label: "Contact Support", chevron: true },
+        { icon: "⭐", label: "Rate ArthSaathi", chevron: true },
       ],
     },
-  ]
+  ];
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#070707' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#070707" }}>
       <View style={{ padding: 20, paddingBottom: 12 }}>
         <Text
           style={{
-            color: '#FFFFFF',
+            color: "#FFFFFF",
             fontSize: 28,
-            fontFamily: 'Jakarta-Bold',
+            fontFamily: "Jakarta-Bold",
           }}
         >
           Profile
         </Text>
         <Text
           style={{
-            color: '#9CA3AF',
+            color: "#9CA3AF",
             fontSize: 14,
-            fontFamily: 'Jakarta-Regular',
+            fontFamily: "Jakarta-Regular",
             marginTop: 4,
           }}
         >
@@ -84,12 +84,12 @@ export default function Profile() {
         <View style={{ paddingHorizontal: 20, marginBottom: 24 }}>
           <View
             style={{
-              backgroundColor: 'rgba(30, 30, 30, 0.95)',
+              backgroundColor: "rgba(30, 30, 30, 0.95)",
               borderRadius: 20,
               padding: 24,
               borderWidth: 1,
-              borderColor: 'rgba(215, 255, 0, 0.3)',
-              alignItems: 'center',
+              borderColor: "rgba(215, 255, 0, 0.3)",
+              alignItems: "center",
             }}
           >
             <View
@@ -97,12 +97,12 @@ export default function Profile() {
                 width: 80,
                 height: 80,
                 borderRadius: 40,
-                backgroundColor: 'rgba(215, 255, 0, 0.2)',
-                alignItems: 'center',
-                justifyContent: 'center',
+                backgroundColor: "rgba(215, 255, 0, 0.2)",
+                alignItems: "center",
+                justifyContent: "center",
                 marginBottom: 16,
                 borderWidth: 3,
-                borderColor: '#D7FF00',
+                borderColor: "#D7FF00",
               }}
             >
               <Text style={{ fontSize: 36 }}>👤</Text>
@@ -110,9 +110,9 @@ export default function Profile() {
 
             <Text
               style={{
-                color: '#FFFFFF',
+                color: "#FFFFFF",
                 fontSize: 22,
-                fontFamily: 'Jakarta-Bold',
+                fontFamily: "Jakarta-Bold",
                 marginBottom: 4,
               }}
             >
@@ -120,9 +120,9 @@ export default function Profile() {
             </Text>
             <Text
               style={{
-                color: '#9CA3AF',
+                color: "#9CA3AF",
                 fontSize: 13,
-                fontFamily: 'Jakarta-Regular',
+                fontFamily: "Jakarta-Regular",
                 marginBottom: 16,
               }}
             >
@@ -131,34 +131,34 @@ export default function Profile() {
 
             <View
               style={{
-                flexDirection: 'row',
+                flexDirection: "row",
                 gap: 16,
-                width: '100%',
+                width: "100%",
               }}
             >
               <View
                 style={{
                   flex: 1,
-                  backgroundColor: '#1E1E1E',
+                  backgroundColor: "#1E1E1E",
                   borderRadius: 12,
                   padding: 12,
-                  alignItems: 'center',
+                  alignItems: "center",
                 }}
               >
                 <Text
                   style={{
-                    color: '#D7FF00',
+                    color: "#D7FF00",
                     fontSize: 20,
-                    fontFamily: 'Jakarta-Bold',
+                    fontFamily: "Jakarta-Bold",
                   }}
                 >
                   47
                 </Text>
                 <Text
                   style={{
-                    color: '#9CA3AF',
+                    color: "#9CA3AF",
                     fontSize: 11,
-                    fontFamily: 'Jakarta-Regular',
+                    fontFamily: "Jakarta-Regular",
                     marginTop: 2,
                   }}
                 >
@@ -169,26 +169,26 @@ export default function Profile() {
               <View
                 style={{
                   flex: 1,
-                  backgroundColor: '#1E1E1E',
+                  backgroundColor: "#1E1E1E",
                   borderRadius: 12,
                   padding: 12,
-                  alignItems: 'center',
+                  alignItems: "center",
                 }}
               >
                 <Text
                   style={{
-                    color: '#4ECDC4',
+                    color: "#4ECDC4",
                     fontSize: 20,
-                    fontFamily: 'Jakarta-Bold',
+                    fontFamily: "Jakarta-Bold",
                   }}
                 >
                   ₹3.2L
                 </Text>
                 <Text
                   style={{
-                    color: '#9CA3AF',
+                    color: "#9CA3AF",
                     fontSize: 11,
-                    fontFamily: 'Jakarta-Regular',
+                    fontFamily: "Jakarta-Regular",
                     marginTop: 2,
                   }}
                 >
@@ -201,14 +201,17 @@ export default function Profile() {
 
         {/* Menu Sections */}
         {menuItems.map((section, sectionIndex) => (
-          <View key={sectionIndex} style={{ paddingHorizontal: 20, marginBottom: 24 }}>
+          <View
+            key={sectionIndex}
+            style={{ paddingHorizontal: 20, marginBottom: 24 }}
+          >
             <Text
               style={{
-                color: '#9CA3AF',
+                color: "#9CA3AF",
                 fontSize: 13,
-                fontFamily: 'Jakarta-Bold',
+                fontFamily: "Jakarta-Bold",
                 marginBottom: 12,
-                textTransform: 'uppercase',
+                textTransform: "uppercase",
               }}
             >
               {section.section}
@@ -216,23 +219,23 @@ export default function Profile() {
 
             <View
               style={{
-                backgroundColor: '#1E1E1E',
+                backgroundColor: "#1E1E1E",
                 borderRadius: 16,
-                overflow: 'hidden',
+                overflow: "hidden",
                 borderWidth: 1,
-                borderColor: 'rgba(255, 255, 255, 0.1)',
+                borderColor: "rgba(255, 255, 255, 0.1)",
               }}
             >
               {section.items.map((item, itemIndex) => (
                 <TouchableOpacity
                   key={itemIndex}
                   style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
+                    flexDirection: "row",
+                    alignItems: "center",
                     padding: 16,
                     borderBottomWidth:
                       itemIndex < section.items.length - 1 ? 1 : 0,
-                    borderBottomColor: 'rgba(255, 255, 255, 0.05)',
+                    borderBottomColor: "rgba(255, 255, 255, 0.05)",
                   }}
                 >
                   <Text style={{ fontSize: 22, marginRight: 12 }}>
@@ -242,9 +245,9 @@ export default function Profile() {
                   <Text
                     style={{
                       flex: 1,
-                      color: '#FFFFFF',
+                      color: "#FFFFFF",
                       fontSize: 14,
-                      fontFamily: 'Jakarta-Medium',
+                      fontFamily: "Jakarta-Medium",
                     }}
                   >
                     {item.label}
@@ -256,10 +259,10 @@ export default function Profile() {
                         width: 48,
                         height: 28,
                         borderRadius: 14,
-                        backgroundColor: item.value ? '#D7FF00' : '#333333',
+                        backgroundColor: item.value ? "#D7FF00" : "#333333",
                         padding: 2,
-                        justifyContent: 'center',
-                        alignItems: item.value ? 'flex-end' : 'flex-start',
+                        justifyContent: "center",
+                        alignItems: item.value ? "flex-end" : "flex-start",
                       }}
                     >
                       <View
@@ -267,7 +270,7 @@ export default function Profile() {
                           width: 24,
                           height: 24,
                           borderRadius: 12,
-                          backgroundColor: '#FFFFFF',
+                          backgroundColor: "#FFFFFF",
                         }}
                       />
                     </View>
@@ -276,9 +279,9 @@ export default function Profile() {
                   {item.value && !item.toggle && (
                     <Text
                       style={{
-                        color: '#9CA3AF',
+                        color: "#9CA3AF",
                         fontSize: 13,
-                        fontFamily: 'Jakarta-Regular',
+                        fontFamily: "Jakarta-Regular",
                         marginRight: 8,
                       }}
                     >
@@ -287,7 +290,7 @@ export default function Profile() {
                   )}
 
                   {item.chevron && (
-                    <Text style={{ color: '#9CA3AF', fontSize: 16 }}>›</Text>
+                    <Text style={{ color: "#9CA3AF", fontSize: 16 }}>›</Text>
                   )}
                 </TouchableOpacity>
               ))}
@@ -300,19 +303,19 @@ export default function Profile() {
           <TouchableOpacity
             onPress={handleSignOut}
             style={{
-              backgroundColor: 'rgba(255, 107, 107, 0.1)',
+              backgroundColor: "rgba(255, 107, 107, 0.1)",
               borderRadius: 12,
               padding: 16,
-              alignItems: 'center',
+              alignItems: "center",
               borderWidth: 1,
-              borderColor: 'rgba(255, 107, 107, 0.3)',
+              borderColor: "rgba(255, 107, 107, 0.3)",
             }}
           >
             <Text
               style={{
-                color: '#FF6B6B',
+                color: "#FF6B6B",
                 fontSize: 14,
-                fontFamily: 'Jakarta-Bold',
+                fontFamily: "Jakarta-Bold",
               }}
             >
               Sign Out
@@ -321,12 +324,12 @@ export default function Profile() {
         </View>
 
         {/* Version */}
-        <View style={{ alignItems: 'center', paddingBottom: 20 }}>
+        <View style={{ alignItems: "center", paddingBottom: 20 }}>
           <Text
             style={{
-              color: '#9CA3AF',
+              color: "#9CA3AF",
               fontSize: 11,
-              fontFamily: 'Jakarta-Regular',
+              fontFamily: "Jakarta-Regular",
             }}
           >
             ArthSaathi v1.0.0
@@ -334,5 +337,5 @@ export default function Profile() {
         </View>
       </ScrollView>
     </SafeAreaView>
-  )
+  );
 }
