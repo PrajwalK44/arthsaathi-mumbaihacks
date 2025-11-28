@@ -1,6 +1,7 @@
 import { router } from "expo-router";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Import persona data
 const personasData = require("@/data/personas.json");
@@ -39,12 +40,58 @@ export default function Home() {
         contentContainerStyle={{ paddingBottom: 100 }}
         showsVerticalScrollIndicator={false}
       >
-        {/* Header */}
-        <View className="p-5 pb-3">
-          <Text className="text-white text-3xl font-jakarta-bold">
-            ArthSaathi
-          </Text>
-          <Text className="text-gray-400 text-sm font-jakarta-regular mt-1">
+        {/* Header Bar */}
+        <View className="px-5 py-4 flex-row items-center justify-between border-b border-white/10 bg-neutral-900/50">
+          {/* AS Logo */}
+          <View className="flex-row items-center gap-3">
+            <View
+              className="w-12 h-12 rounded-full border-2 border-[#D7FF00] bg-[#070707] items-center justify-center"
+              style={{
+                shadowColor: "#D7FF00",
+                shadowOpacity: 0.4,
+                shadowRadius: 8,
+              }}
+            >
+              <Text className="text-[#D7FF00] text-xl font-jakarta-bold">
+                AS
+              </Text>
+            </View>
+            <View>
+              <Text className="text-white text-lg font-jakarta-bold">
+                ArthSaathi
+              </Text>
+              <Text className="text-gray-400 text-xs font-jakarta-regular">
+                Financial Journey
+              </Text>
+            </View>
+          </View>
+
+          {/* Logout Button */}
+          <TouchableOpacity
+            onPress={() => {
+              Alert.alert("Sign Out", "Are you sure you want to sign out?", [
+                { text: "Cancel", style: "cancel" },
+                {
+                  text: "Sign Out",
+                  style: "destructive",
+                  onPress: async () => {
+                    await AsyncStorage.removeItem("arth_user").catch(() => {});
+                    router.replace("/(auth)/welcome");
+                  },
+                },
+              ]);
+            }}
+            className="bg-neutral-800 px-4 py-2 rounded-full border border-white/10"
+          >
+            <Text className="text-white text-xs font-jakarta-medium">
+              ↗ Logout
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Subtitle */}
+        <View className="px-5 pt-4 pb-2">
+          <Text className="text-gray-400 text-sm font-jakarta-regular">
             Choose Your Financial Journey
           </Text>
         </View>

@@ -16,7 +16,9 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
 }) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const pulseAnim = useRef(new Animated.Value(1)).current;
-  const scanLineAnim = useRef(new Animated.Value(0)).current;
+  const rotateAnim = useRef(new Animated.Value(0)).current;
+  const circuitAnim = useRef(new Animated.Value(0)).current;
+  const glowAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     // Fade in animation
@@ -26,29 +28,61 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
       useNativeDriver: true,
     }).start();
 
-    // Pulse animation for the city
+    // Pulse animation for the logo
     Animated.loop(
       Animated.sequence([
         Animated.timing(pulseAnim, {
-          toValue: 1.05,
-          duration: 1500,
+          toValue: 1.1,
+          duration: 1000,
           useNativeDriver: true,
         }),
         Animated.timing(pulseAnim, {
           toValue: 1,
-          duration: 1500,
+          duration: 1000,
           useNativeDriver: true,
         }),
       ])
     ).start();
 
-    // Scan line animation
+    // Rotation animation for rings
     Animated.loop(
-      Animated.timing(scanLineAnim, {
+      Animated.timing(rotateAnim, {
         toValue: 1,
-        duration: 2000,
+        duration: 3000,
         useNativeDriver: true,
       })
+    ).start();
+
+    // Circuit line expansion
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(circuitAnim, {
+          toValue: 1,
+          duration: 1500,
+          useNativeDriver: false,
+        }),
+        Animated.timing(circuitAnim, {
+          toValue: 0,
+          duration: 0,
+          useNativeDriver: false,
+        }),
+      ])
+    ).start();
+
+    // Glow pulse
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(glowAnim, {
+          toValue: 1,
+          duration: 1200,
+          useNativeDriver: true,
+        }),
+        Animated.timing(glowAnim, {
+          toValue: 0,
+          duration: 1200,
+          useNativeDriver: true,
+        }),
+      ])
     ).start();
 
     // Complete after duration
@@ -65,9 +99,19 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
     return () => clearTimeout(timer);
   }, []);
 
-  const scanLineTranslateY = scanLineAnim.interpolate({
+  const rotation = rotateAnim.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, height * 0.6],
+    outputRange: ["0deg", "360deg"],
+  });
+
+  const rotationReverse = rotateAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["360deg", "0deg"],
+  });
+
+  const glowOpacity = glowAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0.3, 0.8],
   });
 
   return (
@@ -93,113 +137,127 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
         ))}
       </View>
 
-      {/* 3D City Wireframe */}
-      <Animated.View
-        style={{
-          transform: [{ scale: pulseAnim }],
-        }}
-        className="items-center justify-center"
-      >
-        <View className="items-center justify-center" style={{ height: 400 }}>
-          {/* City wireframe - simplified representation */}
-          <View className="items-center" style={{ width: width * 0.8 }}>
-            {/* Tallest building */}
+      {/* Center Logo with Animations */}
+      <View className="items-center justify-center">
+        {/* Rotating outer ring */}
+        <Animated.View
+          className="absolute border-2 border-[#D7FF00]/30 rounded-full"
+          style={{
+            width: 280,
+            height: 280,
+            transform: [{ rotate: rotation }],
+          }}
+        >
+          {/* Circuit nodes on ring */}
+          {[0, 90, 180, 270].map((angle, i) => (
             <View
-              className="border-2 border-[#D7FF00] bg-[#D7FF00]/5"
+              key={i}
+              className="absolute w-3 h-3 rounded-full bg-[#D7FF00] border border-[#D7FF00]"
               style={{
-                width: 60,
-                height: 200,
-                shadowColor: "#D7FF00",
-                shadowOpacity: 0.6,
-                shadowRadius: 20,
-                shadowOffset: { width: 0, height: 0 },
-              }}
-            >
-              {Array.from({ length: 10 }).map((_, i) => (
-                <View
-                  key={i}
-                  className="border-b border-[#D7FF00]/30"
-                  style={{ height: 20 }}
-                />
-              ))}
-            </View>
-
-            {/* Middle row of buildings */}
-            <View
-              className="flex-row gap-4 mt-4"
-              style={{ width: width * 0.7 }}
-            >
-              {[150, 120, 180, 100].map((h, i) => (
-                <View
-                  key={i}
-                  className="border-2 border-[#D7FF00] bg-[#D7FF00]/5 flex-1"
-                  style={{
-                    height: h,
-                    shadowColor: "#D7FF00",
-                    shadowOpacity: 0.4,
-                    shadowRadius: 15,
-                    shadowOffset: { width: 0, height: 0 },
-                  }}
-                >
-                  {Array.from({ length: Math.floor(h / 20) }).map((_, j) => (
-                    <View
-                      key={j}
-                      className="border-b border-[#D7FF00]/30"
-                      style={{ height: 20 }}
-                    />
-                  ))}
-                </View>
-              ))}
-            </View>
-
-            {/* Base platform */}
-            <View
-              className="border-2 border-[#D7FF00] bg-[#D7FF00]/10 mt-4"
-              style={{
-                width: width * 0.8,
-                height: 20,
+                top:
+                  280 / 2 -
+                  6 +
+                  Math.sin((angle * Math.PI) / 180) * (280 / 2 - 6),
+                left:
+                  280 / 2 -
+                  6 +
+                  Math.cos((angle * Math.PI) / 180) * (280 / 2 - 6),
                 shadowColor: "#D7FF00",
                 shadowOpacity: 0.8,
-                shadowRadius: 30,
-                shadowOffset: { width: 0, height: 10 },
+                shadowRadius: 8,
               }}
-            >
-              <View className="flex-row h-full">
-                {Array.from({ length: 30 }).map((_, i) => (
-                  <View
-                    key={i}
-                    className="border-r border-[#D7FF00]/30 flex-1"
-                  />
-                ))}
-              </View>
-            </View>
+            />
+          ))}
+        </Animated.View>
 
-            {/* Grid lines beneath */}
-            <View className="mt-4" style={{ width: width * 0.8 }}>
-              {Array.from({ length: 5 }).map((_, i) => (
-                <View
-                  key={i}
-                  className="border-b border-[#D7FF00]/20"
-                  style={{ height: 8, opacity: 1 - i * 0.15 }}
-                />
-              ))}
-            </View>
+        {/* Counter-rotating middle ring */}
+        <Animated.View
+          className="absolute border-2 border-[#4ECDC4]/40 rounded-full"
+          style={{
+            width: 200,
+            height: 200,
+            transform: [{ rotate: rotationReverse }],
+          }}
+        >
+          {/* Circuit nodes on middle ring */}
+          {[45, 135, 225, 315].map((angle, i) => (
+            <View
+              key={i}
+              className="absolute w-2 h-2 rounded-full bg-[#4ECDC4] border border-[#4ECDC4]"
+              style={{
+                top:
+                  200 / 2 -
+                  4 +
+                  Math.sin((angle * Math.PI) / 180) * (200 / 2 - 4),
+                left:
+                  200 / 2 -
+                  4 +
+                  Math.cos((angle * Math.PI) / 180) * (200 / 2 - 4),
+                shadowColor: "#4ECDC4",
+                shadowOpacity: 0.6,
+                shadowRadius: 6,
+              }}
+            />
+          ))}
+        </Animated.View>
+
+        {/* Pulsing glow behind logo */}
+        <Animated.View
+          className="absolute rounded-full bg-[#D7FF00]"
+          style={{
+            width: 140,
+            height: 140,
+            opacity: glowOpacity,
+            shadowColor: "#D7FF00",
+            shadowOpacity: 0.8,
+            shadowRadius: 40,
+          }}
+        />
+
+        {/* AS Logo */}
+        <Animated.View
+          style={{
+            transform: [{ scale: pulseAnim }],
+          }}
+          className="items-center justify-center"
+        >
+          <View
+            className="items-center justify-center rounded-full border-4 border-[#D7FF00] bg-[#070707]"
+            style={{
+              width: 160,
+              height: 160,
+              shadowColor: "#D7FF00",
+              shadowOpacity: 0.6,
+              shadowRadius: 30,
+            }}
+          >
+            <Text className="text-[#D7FF00] text-7xl font-jakarta-bold">
+              AS
+            </Text>
           </View>
-        </View>
-      </Animated.View>
+        </Animated.View>
 
-      {/* Scanning line effect */}
-      <Animated.View
-        className="absolute w-full h-px bg-[#D7FF00]"
-        style={{
-          top: height * 0.2,
-          transform: [{ translateY: scanLineTranslateY }],
-          shadowColor: "#D7FF00",
-          shadowOpacity: 0.8,
-          shadowRadius: 10,
-          shadowOffset: { width: 0, height: 0 },
-        }}
-      />
+        {/* Circuit lines radiating from center */}
+        {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
+          <Animated.View
+            key={`line-${i}`}
+            className="absolute bg-[#D7FF00]"
+            style={{
+              width: 2,
+              height: circuitAnim.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, 100],
+              }),
+              transform: [{ rotate: `${angle}deg` }, { translateY: -50 }],
+              transformOrigin: "bottom",
+              opacity: circuitAnim.interpolate({
+                inputRange: [0, 0.5, 1],
+                outputRange: [0, 0.6, 0],
+              }),
+            }}
+          />
+        ))}
+      </View>
 
       {/* Loading messages */}
       <View

@@ -798,7 +798,7 @@ export default function AssessmentReport() {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => router.back()}
+            onPress={() => router.push("/(root)/survey")}
             className="bg-neutral-800 rounded-2xl p-4 items-center"
           >
             <Text className="text-white text-base font-jakarta-bold">

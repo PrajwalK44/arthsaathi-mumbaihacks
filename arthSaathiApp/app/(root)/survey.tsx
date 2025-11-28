@@ -173,7 +173,8 @@ export default function Survey() {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-[#070707]">{/* Header */}
+    <SafeAreaView className="flex-1 bg-[#070707]">
+      {/* Header */}
       {/* Header */}
       <View className="p-6 pb-4">
         <View className="flex-row items-center justify-between mb-4">

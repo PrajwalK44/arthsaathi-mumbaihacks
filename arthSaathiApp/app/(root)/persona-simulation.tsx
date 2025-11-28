@@ -1152,8 +1152,8 @@ const PersonaSimulation = () => {
                       <View className="flex-row items-start">
                         <Text className="text-[#FF6B6B] text-lg mr-2">•</Text>
                         <Text className="text-gray-300 text-sm font-jakarta-regular flex-1">
-                          Limited emergency fund buffer (less than one month&apos;s
-                          income)
+                          Limited emergency fund buffer (less than one
+                          month&apos;s income)
                         </Text>
                       </View>
                     )}

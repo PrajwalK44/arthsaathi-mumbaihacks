@@ -70,30 +70,56 @@ export default function Profile() {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#070707" }}>
-      <View style={{ padding: 20, paddingBottom: 12 }}>
-        <Text
-          style={{
-            color: "#FFFFFF",
-            fontSize: 28,
-            fontFamily: "Jakarta-Bold",
+      {/* Header Bar */}
+      <View className="px-5 py-4 flex-row items-center justify-between border-b border-white/10 bg-neutral-900/50">
+        {/* AS Logo */}
+        <View className="flex-row items-center gap-3">
+          <View
+            className="w-12 h-12 rounded-full border-2 border-[#D7FF00] bg-[#070707] items-center justify-center"
+            style={{
+              shadowColor: "#D7FF00",
+              shadowOpacity: 0.4,
+              shadowRadius: 8,
+            }}
+          >
+            <Text className="text-[#D7FF00] text-xl font-jakarta-bold">AS</Text>
+          </View>
+          <View>
+            <Text className="text-white text-lg font-jakarta-bold">
+              ArthSaathi
+            </Text>
+            <Text className="text-gray-400 text-xs font-jakarta-regular">
+              Financial Journey
+            </Text>
+          </View>
+        </View>
+
+        {/* Logout Button */}
+        <TouchableOpacity
+          onPress={() => {
+            Alert.alert("Sign Out", "Are you sure you want to sign out?", [
+              { text: "Cancel", style: "cancel" },
+              {
+                text: "Sign Out",
+                style: "destructive",
+                onPress: async () => {
+                  await AsyncStorage.removeItem("arth_user").catch(() => {});
+                  router.replace("/(auth)/welcome");
+                },
+              },
+            ]);
           }}
+          className="bg-neutral-800 px-4 py-2 rounded-full border border-white/10"
         >
-          Profile
-        </Text>
-        <Text
-          style={{
-            color: "#9CA3AF",
-            fontSize: 14,
-            fontFamily: "Jakarta-Regular",
-            marginTop: 4,
-          }}
-        >
-          Manage your account
-        </Text>
+          <Text className="text-white text-xs font-jakarta-medium">
+            ↗ Logout
+          </Text>
+        </TouchableOpacity>
       </View>
 
       <ScrollView
         style={{ flex: 1 }}
+        className="mt-5"
         contentContainerStyle={{ paddingBottom: 100 }}
         showsVerticalScrollIndicator={false}
       >
@@ -319,31 +345,6 @@ export default function Profile() {
             </View>
           </View>
         ))}
-
-        {/* Logout Button */}
-        <View style={{ paddingHorizontal: 20, marginBottom: 20 }}>
-          <TouchableOpacity
-            onPress={handleSignOut}
-            style={{
-              backgroundColor: "rgba(255, 107, 107, 0.1)",
-              borderRadius: 12,
-              padding: 16,
-              alignItems: "center",
-              borderWidth: 1,
-              borderColor: "rgba(255, 107, 107, 0.3)",
-            }}
-          >
-            <Text
-              style={{
-                color: "#FF6B6B",
-                fontSize: 14,
-                fontFamily: "Jakarta-Bold",
-              }}
-            >
-              Sign Out
-            </Text>
-          </TouchableOpacity>
-        </View>
 
         {/* Version */}
         <View style={{ alignItems: "center", paddingBottom: 20 }}>

@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import Slider from "@react-native-community/slider";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+import LoadingScreen from "@/components/LoadingScreen";
 const { width } = Dimensions.get("window");
 
 interface SurveyData {

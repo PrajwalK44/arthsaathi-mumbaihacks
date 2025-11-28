@@ -154,7 +154,7 @@ export default function SignIn() {
               style={{ alignSelf: "center", marginTop: 16 }}
             >
               <Text style={{ color: "#FFFFFF", fontSize: 16 }}>
-                Don't have an account?{" "}
+                Don&apos;t have an account?{" "}
                 <Text style={{ color: "#D7FF00" }}>Create Account</Text>
               </Text>
             </Link>
@@ -212,7 +212,7 @@ export default function SignIn() {
                   marginTop: 8,
                 }}
               >
-                You're now signed in (mock).
+                You&apos;re now signed in.
               </Text>
               <TouchableOpacity
                 onPress={() => {
