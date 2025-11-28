@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import LoadingScreen from "@/components/LoadingScreen";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const { width } = Dimensions.get("window");
 
@@ -310,9 +311,38 @@ const DynamicPersona = () => {
           "Calculating risk tolerance...",
           "Building your persona profile...",
         ]}
-        onComplete={() => {
+        onComplete={async () => {
           setShowLoadingScreen(false);
           setShowReport(true);
+
+          // Save assessment to timeline
+          const report = generatePersonaReport();
+          const assessmentEntry = {
+            id: Date.now().toString(),
+            type: "assessment",
+            personaType: report.personaType,
+            emoji: report.emoji,
+            profile: report.profile,
+            timestamp: Date.now(),
+            date: new Date().toISOString(),
+          };
+
+          try {
+            const existingTimeline =
+              await AsyncStorage.getItem("arth_timeline");
+            const timeline = existingTimeline
+              ? JSON.parse(existingTimeline)
+              : [];
+            timeline.unshift(assessmentEntry);
+            // Keep only last 20 entries
+            const trimmedTimeline = timeline.slice(0, 20);
+            await AsyncStorage.setItem(
+              "arth_timeline",
+              JSON.stringify(trimmedTimeline)
+            );
+          } catch (error) {
+            console.error("Failed to save assessment to timeline:", error);
+          }
         }}
         duration={2500}
       />

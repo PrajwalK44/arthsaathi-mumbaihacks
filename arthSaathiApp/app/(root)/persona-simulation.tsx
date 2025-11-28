@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import LoadingScreen from "@/components/LoadingScreen";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface Choice {
   id: string;
@@ -282,9 +283,42 @@ const PersonaSimulation = () => {
           "Mapping behavioral patterns...",
           "Generating predictive scenarios...",
         ]}
-        onComplete={() => {
+        onComplete={async () => {
           setShowLoadingScreen(false);
           setShowReport(true);
+
+          // Save simulation to timeline
+          const report = generateSimulationReport();
+          const simulationEntry = {
+            id: Date.now().toString(),
+            type: "simulation",
+            personaName: persona.display_profile.name,
+            personaType: persona.type,
+            totalImpact: report.totalImpact,
+            finalSavings: report.finalSavings,
+            healthScore: report.healthScore,
+            dominantBehavior: report.dominantBehavior,
+            eventsCompleted: totalEvents,
+            timestamp: Date.now(),
+            date: new Date().toISOString(),
+          };
+
+          try {
+            const existingTimeline =
+              await AsyncStorage.getItem("arth_timeline");
+            const timeline = existingTimeline
+              ? JSON.parse(existingTimeline)
+              : [];
+            timeline.unshift(simulationEntry);
+            // Keep only last 20 entries
+            const trimmedTimeline = timeline.slice(0, 20);
+            await AsyncStorage.setItem(
+              "arth_timeline",
+              JSON.stringify(trimmedTimeline)
+            );
+          } catch (error) {
+            console.error("Failed to save simulation to timeline:", error);
+          }
         }}
         duration={2500}
       />
