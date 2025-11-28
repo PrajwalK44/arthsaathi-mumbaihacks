@@ -1,0 +1,312 @@
+{
+  "status": "success",
+  "code": 200,
+  "timestamp": "2023-10-27T10:05:00Z",
+  "meta": {
+    "domain": "financial_psychology",
+    "version": "1.2"
+  },
+  "data": {
+    "session_id": "fin_psych_992_ax",
+    "total_questions_pool": 25,
+    "flow": {
+      "stage_1_baseline": [
+        {
+          "id": "fq1",
+          "category": "baseline",
+          "text": "If you unexpectedly received ₹10,00,000 today, what is your immediate reflex?",
+          "type": "single_choice",
+          "options": [
+            {
+              "label": "Put it all into a savings account immediately",
+              "value": "saver"
+            },
+            {
+              "label": "Invest it in high-growth stocks or crypto",
+              "value": "investor"
+            },
+            {
+              "label": "Pay off existing debts or bills",
+              "value": "debt_focused"
+            },
+            {
+              "label": "Buy that one thing I've been wanting for months",
+              "value": "spender"
+            }
+          ]
+        },
+        {
+          "id": "fq2",
+          "category": "baseline",
+          "text": "How often do you check your bank account balance?",
+          "type": "single_choice",
+          "options": [
+            {
+              "label": "Daily (or multiple times a day)",
+              "value": "hyper_aware"
+            },
+            { "label": "Weekly/Monthly", "value": "moderate" },
+            { "label": "Only when I absolutely have to", "value": "avoider" },
+            {
+              "label": "I have alerts set up, so I don't look manually",
+              "value": "automated"
+            }
+          ]
+        },
+        {
+          "id": "fq3",
+          "category": "baseline",
+          "text": "Thinking back to your childhood, how was money discussed in your home?",
+          "type": "single_choice",
+          "options": [
+            {
+              "label": "It was a source of constant stress and arguing",
+              "value": "trauma_history"
+            },
+            {
+              "label": "It was never discussed; a taboo subject",
+              "value": "ignorant_history"
+            },
+            {
+              "label": "We were taught to save and be frugal",
+              "value": "frugal_history"
+            },
+            {
+              "label": "Money was abundant and never an issue",
+              "value": "abundant_history"
+            }
+          ]
+        },
+        {
+          "id": "fq4",
+          "category": "baseline",
+          "text": "How do you feel about 'Good Debt' (e.g., mortgages, business loans)?",
+          "type": "single_choice",
+          "options": [
+            { "label": "All debt is bad debt to me", "value": "debt_averse" },
+            {
+              "label": "It's a necessary tool for leverage and growth",
+              "value": "investor"
+            },
+            {
+              "label": "It stresses me out, regardless of the type",
+              "value": "avoider"
+            },
+            {
+              "label": "I don't really understand the difference",
+              "value": "novice"
+            }
+          ]
+        },
+        {
+          "id": "fq5",
+          "category": "baseline",
+          "text": "When you make a large purchase, what is the dominant emotion afterward?",
+          "type": "single_choice",
+          "options": [
+            { "label": "Guilt or buyer's remorse", "value": "guilt_prone" },
+            {
+              "label": "Excitement and satisfaction",
+              "value": "satisfaction_prone"
+            },
+            {
+              "label": "Anxiety about the money gone",
+              "value": "anxiety_prone"
+            },
+            { "label": "Indifference, it's just money", "value": "detached" }
+          ]
+        }
+      ],
+      "stage_2_deep_dive": {
+        "saver": [
+          {
+            "id": "fq6",
+            "category": "psychology",
+            "text": "Do you find it difficult to spend money on yourself, even for things you need?",
+            "options": [
+              { "label": "Yes, I feel wasteful", "value": "guilt_heavy" },
+              { "label": "No, only on luxuries", "value": "moderate" },
+              { "label": "I struggle to define 'need'", "value": "confused" }
+            ]
+          },
+          {
+            "id": "fq7",
+            "category": "psychology",
+            "text": "Do you equate your self-worth with the number in your savings account?",
+            "options": [
+              { "label": "Heavily", "value": "identity_tied" },
+              { "label": "Somewhat", "value": "moderate" },
+              { "label": "Not at all", "value": "healthy" }
+            ]
+          }
+        ],
+        "investor": [
+          {
+            "id": "fq8",
+            "category": "risk",
+            "text": "If your investment portfolio dropped 40% tomorrow, would you:",
+            "options": [
+              { "label": "Buy more (buy the dip)", "value": "aggressive" },
+              { "label": "Hold and do nothing", "value": "disciplined" },
+              { "label": "Panic and sell", "value": "panic_prone" }
+            ]
+          },
+          {
+            "id": "fq9",
+            "category": "risk",
+            "text": "Do you prioritize cash flow (monthly income) or appreciation (value growth)?",
+            "options": [
+              { "label": "Cash Flow", "value": "income_focused" },
+              { "label": "Appreciation", "value": "growth_focused" },
+              { "label": "Balanced", "value": "balanced" }
+            ]
+          }
+        ],
+        "spender": [
+          {
+            "id": "fq10",
+            "category": "habits",
+            "text": "Do you often hide purchases or new items from family/partners to avoid judgment?",
+            "options": [
+              { "label": "Frequently", "value": "shame_driven" },
+              { "label": "Sometimes", "value": "occasional" },
+              { "label": "Never", "value": "transparent" }
+            ]
+          },
+          {
+            "id": "fq11",
+            "category": "habits",
+            "text": "Is 'Retail Therapy' (shopping to improve mood) a common habit for you?",
+            "options": [
+              {
+                "label": "Yes, it's my main coping mechanism",
+                "value": "addictive"
+              },
+              { "label": "Occasionally", "value": "occasional" },
+              { "label": "No, spending stresses me out", "value": "reversed" }
+            ]
+          }
+        ],
+        "avoider": [
+          {
+            "id": "fq12",
+            "category": "anxiety",
+            "text": "Have you ever left a bill unopened for weeks because you didn't want to see the total?",
+            "options": [
+              { "label": "Yes, frequently", "value": "severe_avoidance" },
+              { "label": "Once or twice", "value": "mild" },
+              { "label": "Never", "value": "confrontational" }
+            ]
+          },
+          {
+            "id": "fq13",
+            "category": "anxiety",
+            "text": "Do you know your exact net worth right now?",
+            "options": [
+              { "label": "Yes, to the penny", "value": "precise" },
+              { "label": "Rough estimate", "value": "aware" },
+              { "label": "I have no idea", "value": "oblivious" }
+            ]
+          }
+        ],
+        "debt_focused": [
+          {
+            "id": "fq20",
+            "category": "tactical",
+            "text": "Does your debt feel like a moral failing or a math problem?",
+            "options": [
+              { "label": "Moral failing (I am bad)", "value": "shame_based" },
+              {
+                "label": "Math problem (It's just numbers)",
+                "value": "pragmatic"
+              },
+              { "label": "A mix of both", "value": "conflicted" }
+            ]
+          },
+          {
+            "id": "fq21",
+            "category": "tactical",
+            "text": "Are you currently paying only minimums or aggressively paying down principal?",
+            "options": [
+              { "label": "Minimums only", "value": "survival_mode" },
+              { "label": "Aggressive payoff", "value": "determined" },
+              { "label": "Struggling to make minimums", "value": "crisis" }
+            ]
+          }
+        ],
+        "universal": [
+          {
+            "id": "fq17",
+            "category": "universal_mindset",
+            "text": "What does 'Financial Freedom' look like to you?",
+            "options": [
+              { "label": "Not having to work", "value": "retirement_focused" },
+              {
+                "label": "Buying whatever I want",
+                "value": "consumption_focused"
+              },
+              { "label": "Having zero debt", "value": "debt_free_focused" },
+              { "label": "Helping others", "value": "altruistic" }
+            ]
+          },
+          {
+            "id": "fq18",
+            "category": "universal_mindset",
+            "text": "Which fear is greater?",
+            "options": [
+              {
+                "label": "Running out of money in old age",
+                "value": "future_fear"
+              },
+              {
+                "label": "Missing out on life experiences while young",
+                "value": "present_fear"
+              }
+            ]
+          },
+          {
+            "id": "fq19",
+            "category": "universal_mindset",
+            "text": "When you see a wealthy person, your first thought is:",
+            "options": [
+              { "label": "Admiration/Curiosity", "value": "aspirational" },
+              { "label": "Envy/Jealousy", "value": "comparative" },
+              {
+                "label": "Suspicion (they must be greedy)",
+                "value": "distrustful"
+              },
+              { "label": "Indifference", "value": "neutral" }
+            ]
+          },
+          {
+            "id": "fq24",
+            "category": "social",
+            "text": "Have you ever lent money to a friend or family member expecting it back, but never got it?",
+            "options": [
+              {
+                "label": "Yes, and it ruined the relationship",
+                "value": "boundary_violated"
+              },
+              { "label": "Yes, but I let it go", "value": "forgiving" },
+              {
+                "label": "No, I never lend money",
+                "value": "strict_boundaries"
+              }
+            ]
+          },
+          {
+            "id": "fq25",
+            "category": "future",
+            "text": "Do you believe you will be wealthier than you are now in 5 years?",
+            "options": [
+              { "label": "Absolutely", "value": "optimistic" },
+              { "label": "Maybe / Hopefully", "value": "uncertain" },
+              { "label": "Doubtful", "value": "pessimistic" },
+              { "label": "No, I expect to have less", "value": "fatalistic" }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

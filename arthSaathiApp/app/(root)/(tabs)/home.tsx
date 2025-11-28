@@ -28,8 +28,8 @@ export default function Home() {
   };
 
   const handleGenerateCustom = () => {
-    // Navigate to dynamic persona generation
-    router.push("/(root)/dynamic-persona");
+    // Navigate to survey/assessment
+    router.push("/(root)/survey");
   };
 
   return (
