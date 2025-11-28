@@ -1,0 +1,1120 @@
+{
+  "meta": {
+    "version": "2.0",
+    "context": "Indian Gig Economy & Irregular Income Professionals",
+    "currency": "INR",
+    "purpose": "Seed data for ArthSaathi AI Simulation Engine - Extended Dataset"
+  },
+  "personas": [
+    {
+      "id": "persona_001",
+      "type": "logistics_delivery",
+      "display_profile": {
+        "name": "Ramesh Kumar",
+        "age": 26,
+        "role": "Delivery Partner (Food & Parcel)",
+        "location": "Bengaluru, Karnataka",
+        "icon_ref": "scooter_helmet",
+        "bio": "Ramesh rides his own bike for two major delivery apps. He chases 'Rainy Day' incentives and works 12-hour shifts. He supports his parents in the village.",
+        "quote": "If the wheel stops turning, the money stops coming."
+      },
+      "financial_baseline": {
+        "avg_monthly_income": 22000,
+        "income_volatility": "High (Daily Payouts)",
+        "savings_balance": 12000,
+        "debt_total": 0,
+        "fixed_expenses": 14000,
+        "insurance_status": "Expired"
+      },
+      "psychometric_profile": {
+        "risk_appetite": "Moderate",
+        "planning_horizon": "Short-term (Daily/Weekly)",
+        "primary_stressor": "Bike Maintenance & Family Health"
+      },
+      "simulation_context": {
+        "current_month": "October (Diwali Season)",
+        "active_goal": "Complete 150 orders in 5 days for ₹5,000 Bonus",
+        "urgent_alert": "Bike insurance expiring in 72 hours."
+      },
+      "events": [
+        {
+          "event_id": "evt_001_breakdown",
+          "trigger": "Asset Failure",
+          "title": "The Pothole Disaster",
+          "description": "It is Day 2 of your Mega Bonus challenge. You hit a deep pothole in Indiranagar. Your bike's front suspension is damaged. It is rideable but very shaky and dangerous.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Fix immediately at Authorized Service Center (₹3,000)",
+              "financial_impact": -3000,
+              "time_impact": "Lose 4 hours",
+              "behavioral_tag": "Prudent/Long-term View",
+              "outcome_narrative": "You spend a chunk of savings, but the bike runs smooth. You feel safer, but now you are stressed about the low bank balance."
+            },
+            {
+              "id": "c2",
+              "text": "Roadside 'Jugaad' fix (₹500)",
+              "financial_impact": -500,
+              "time_impact": "Lose 30 mins",
+              "behavioral_tag": "Short-term/Risk Taker",
+              "outcome_narrative": "The mechanic ties it up with wire and basic welding. It works for now, but you drive with fear."
+            },
+            {
+              "id": "c3",
+              "text": "Ignore it and keep riding",
+              "financial_impact": 0,
+              "time_impact": "None",
+              "behavioral_tag": "Negligence/Desperation",
+              "outcome_narrative": "You save money, but your speed drops. You miss two deliveries because you had to drive slowly over bumps."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_002_peer_pressure",
+          "trigger": "Social Spending",
+          "title": "The Biryani Party",
+          "description": "You just got your weekly payout of ₹4,500. Your roommates are celebrating a birthday at a local bar and want you to chip in ₹1,200.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Join the party (-₹1,200)",
+              "financial_impact": -1200,
+              "behavioral_tag": "Impulsive/Social Conformity",
+              "outcome_narrative": "You had a great night, but waking up to see 25% of your weekly earnings gone hurts."
+            },
+            {
+              "id": "c2",
+              "text": "Skip and eat at home",
+              "financial_impact": 0,
+              "behavioral_tag": "Disciplined/Frugal",
+              "outcome_narrative": "Your friends call you stingy, but your wallet is safe."
+            },
+            {
+              "id": "c3",
+              "text": "Join but use BNPL (Buy Now Pay Later)",
+              "financial_impact": 0,
+              "future_liability": 1300,
+              "behavioral_tag": "Credit Trap/Procrastination",
+              "outcome_narrative": "You enjoyed the night without paying cash, but you started a debt cycle for a non-asset."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_003_traffic_fine",
+          "trigger": "Legal/Compliance",
+          "title": "The Traffic Challan",
+          "description": "You jumped a signal to deliver a warm pizza on time. A cop catches you. The official fine is ₹1,000.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Pay the official fine (₹1,000)",
+              "financial_impact": -1000,
+              "behavioral_tag": "Compliance/Ethical",
+              "outcome_narrative": "It hurts your wallet, but you have a clean receipt and no guilt."
+            },
+            {
+              "id": "c2",
+              "text": "Attempt to Bribe (₹200)",
+              "financial_impact": -200,
+              "behavioral_tag": "Corruption/Short-term Fix",
+              "outcome_narrative": "You saved money, but you risk getting into deeper trouble if the cop refuses."
+            },
+            {
+              "id": "c3",
+              "text": "Argue and plead poverty",
+              "financial_impact": 0,
+              "time_impact": "Lose 1 hour",
+              "behavioral_tag": "Time vs Money Tradeoff",
+              "outcome_narrative": "The cop lets you go with a warning after wasting an hour. You missed the peak lunch hour orders."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_004_health_scare",
+          "trigger": "Health",
+          "title": "The Back Spasm",
+          "description": "Constant riding has caused a severe back spasm. The doctor suggests 3 days of complete rest and medicines worth ₹800.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Take 3 days off & buy meds (-₹800)",
+              "financial_impact": -800,
+              "income_loss": 3000,
+              "behavioral_tag": "Health Prioritization",
+              "outcome_narrative": "You lose income, but your body recovers. Long term sustainability secured."
+            },
+            {
+              "id": "c2",
+              "text": "Buy painkiller spray (₹150) and keep working",
+              "financial_impact": -150,
+              "behavioral_tag": "Health Neglect/Short-term Gain",
+              "outcome_narrative": "You earn money today, but the pain is becoming chronic."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_005_data_pack",
+          "trigger": "Operational Cost",
+          "title": "Data Exhausted",
+          "description": "Mid-shift, you get a notification: 90% Data used. If data stops, you can't receive orders. You usually recharge for ₹299/month.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Do a small data top-up (₹25)",
+              "financial_impact": -25,
+              "behavioral_tag": "Just-in-Time Spending",
+              "outcome_narrative": "It solves the problem for today only."
+            },
+            {
+              "id": "c2",
+              "text": "Recharge full month plan early (₹299)",
+              "financial_impact": -299,
+              "behavioral_tag": "Planning Ahead",
+              "outcome_narrative": "You secure the next month's connectivity."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_006_family_festive",
+          "trigger": "Family Obligation",
+          "title": "Diwali Money",
+          "description": "Parents call. They expect you to send ₹5,000 for Diwali sweets and clothes for the family in the village.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Send full ₹5,000 from savings",
+              "financial_impact": -5000,
+              "behavioral_tag": "Family First/Savings Depletion",
+              "outcome_narrative": "Your savings are dangerously low, but your parents are happy."
+            },
+            {
+              "id": "c2",
+              "text": "Send ₹2,000 and make excuses",
+              "financial_impact": -2000,
+              "behavioral_tag": "Boundary Setting",
+              "outcome_narrative": "Parents are disappointed, but you keep a safety buffer."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_007_rainy_day",
+          "trigger": "High Risk / High Reward",
+          "title": "The Storm Surge",
+          "description": "It's pouring rain. The app offers 'Rain Mode': Extra ₹30 per order. Roads are slippery.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Log in and ride aggressively",
+              "financial_impact": 0,
+              "potential_gain": 500,
+              "behavioral_tag": "High Risk Taking",
+              "outcome_narrative": "You made great money, but had two near-miss accidents."
+            },
+            {
+              "id": "c2",
+              "text": "Stay offline",
+              "financial_impact": 0,
+              "behavioral_tag": "Safety First",
+              "outcome_narrative": "You stayed dry and safe, but missed a prime earning window."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_008_cod_dispute",
+          "trigger": "Platform Policy",
+          "title": "The Change Issue",
+          "description": "A customer pays Cash on Delivery with a ₹500 note. You don't have change. He refuses to take the order unless you find change.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Run to a shop to get change",
+              "financial_impact": 0,
+              "time_impact": "Lose 20 mins",
+              "behavioral_tag": "Customer Service/Inefficiency",
+              "outcome_narrative": "You solved it, but wasted peak time."
+            },
+            {
+              "id": "c2",
+              "text": "Ask him to GPay you (He is annoyed)",
+              "financial_impact": 0,
+              "behavioral_tag": "Digital Push/Conflict Risk",
+              "outcome_narrative": "He pays but gives you a 1-star rating for 'Attitude'."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "persona_002",
+      "type": "creative_freelancer",
+      "display_profile": {
+        "name": "Priya Desai",
+        "age": 29,
+        "role": "Freelance UI/UX Designer",
+        "location": "Pune, Maharashtra",
+        "icon_ref": "laptop_coffee",
+        "bio": "Priya earns well but sporadically. She struggles with the 'Feast and Famine' cycle—feeling rich when a check clears and poor two weeks later.",
+        "quote": "My bank account is a rollercoaster."
+      },
+      "financial_baseline": {
+        "avg_monthly_income": 60000,
+        "income_volatility": "Extreme (Lump sums every 2-3 months)",
+        "savings_balance": 45000,
+        "debt_total": 35000,
+        "debt_type": "Credit Card",
+        "fixed_expenses": 25000
+      },
+      "psychometric_profile": {
+        "risk_appetite": "High",
+        "planning_horizon": "Project-based",
+        "primary_stressor": "Late Client Payments"
+      },
+      "simulation_context": {
+        "current_month": "March (Financial Year End)",
+        "active_goal": "Clear Credit Card debt before interest hits",
+        "urgent_alert": "Rent due in 5 days."
+      },
+      "events": [
+        {
+          "event_id": "evt_001_windfall",
+          "trigger": "Income Spike",
+          "title": "The Advance Payment",
+          "description": "A ₹75,000 advance just hit your account. You see a new iPad Pro (₹80k) that you've wanted for sketching. It's available on No-Cost EMI.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Buy iPad on EMI",
+              "financial_impact": -8000,
+              "future_liability": 72000,
+              "behavioral_tag": "Lifestyle Inflation/Rationalization",
+              "outcome_narrative": "You feel professional, but you've just added a ₹8,000 monthly commitment to an unstable income."
+            },
+            {
+              "id": "c2",
+              "text": "Buy a basic Wacom tablet (₹8,000)",
+              "financial_impact": -8000,
+              "behavioral_tag": "Value Conscious",
+              "outcome_narrative": "It gets the job done. You save the rest of the capital."
+            },
+            {
+              "id": "c3",
+              "text": "Stick to old laptop, Save cash",
+              "financial_impact": 0,
+              "behavioral_tag": "Hyper-Conservative",
+              "outcome_narrative": "Work is slower, but your emergency fund is healthy."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_002_ghosting",
+          "trigger": "Cash Flow Crisis",
+          "title": "The Client Ghosting",
+          "description": "It is Month 2. The second installment of ₹75,000 is delayed. The client isn't replying. Rent (₹18,000) is due tomorrow. Bank balance: ₹10,000.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Break Tax FD (Fixed Deposit)",
+              "financial_impact": 18000,
+              "behavioral_tag": "Asset Liquidation",
+              "outcome_narrative": "Rent is paid, but you lost interest and dipped into your tax savings."
+            },
+            {
+              "id": "c2",
+              "text": "Take an Instant Loan App @ 18%",
+              "financial_impact": 18000,
+              "future_liability": 22000,
+              "behavioral_tag": "Bad Debt/Panic",
+              "outcome_narrative": "You solved the immediate problem but signed up for high-interest stress."
+            },
+            {
+              "id": "c3",
+              "text": "Ask Landlord for 10-day extension",
+              "financial_impact": 0,
+              "behavioral_tag": "Negotiation/Social Capital Usage",
+              "outcome_narrative": "Embarrassing conversation, but you saved your financial health."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_003_subscription_trap",
+          "trigger": "Recurring Expense",
+          "title": "The Subscription Audit",
+          "description": "You realize you are paying ₹5,000/month for Adobe, Notion, Figma, and Netflix. A new AI tool (₹2,000) looks cool.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Subscribe to the new tool",
+              "financial_impact": -2000,
+              "behavioral_tag": "Tool Hoarding",
+              "outcome_narrative": "You have the best tools, but your fixed costs are bleeding you dry."
+            },
+            {
+              "id": "c2",
+              "text": "Cancel Netflix & unused tools first",
+              "financial_impact": 0,
+              "behavioral_tag": "Financial Hygiene",
+              "outcome_narrative": "You swapped expenses. Net impact zero. Smart move."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_004_friend_loan",
+          "trigger": "Social Lending",
+          "title": "The 'Help Me' Text",
+          "description": "A college friend asks to borrow ₹10,000 for an 'emergency'. You have the cash, but it's for next month's rent.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Lend the money",
+              "financial_impact": -10000,
+              "behavioral_tag": "Emotional Lending",
+              "outcome_narrative": "You helped a friend, but now your runway is shortened by 15 days."
+            },
+            {
+              "id": "c2",
+              "text": "Politely refuse",
+              "financial_impact": 0,
+              "behavioral_tag": "Boundary Setting",
+              "outcome_narrative": "It was awkward, but your financial stability is preserved."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_005_tax_scare",
+          "trigger": "Compliance",
+          "title": "March Madness",
+          "description": "It's March 25th. You haven't organized your invoices for the year. A CA offers to do it for ₹5,000. Or do it yourself.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Hire the CA (₹5,000)",
+              "financial_impact": -5000,
+              "behavioral_tag": "Outsourcing/Compliance",
+              "outcome_narrative": "Costly, but you save time and ensure no tax penalties."
+            },
+            {
+              "id": "c2",
+              "text": "Do it yourself",
+              "financial_impact": 0,
+              "time_impact": "Lose 2 days work",
+              "behavioral_tag": "DIY/False Economy",
+              "outcome_narrative": "You saved money but missed a deadline for a small client project due to time loss."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_006_hardware_crash",
+          "trigger": "Asset Risk",
+          "title": "The Blue Screen",
+          "description": "Your laptop crashes mid-project. Repair cost: ₹12,000. New Laptop: ₹90,000.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Repair it",
+              "financial_impact": -12000,
+              "behavioral_tag": "Stop-gap Measure",
+              "outcome_narrative": "It works, but you are nervous it will crash again."
+            },
+            {
+              "id": "c2",
+              "text": "Buy new on EMI",
+              "financial_impact": -10000,
+              "future_liability": 80000,
+              "behavioral_tag": "Capital Investment/Debt",
+              "outcome_narrative": "You have a reliable machine, but your monthly EMI burden just doubled."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_007_lowball_offer",
+          "trigger": "Negotiation",
+          "title": "The Cheap Client",
+          "description": "A client offers a bulk project for ₹40,000. Market rate is ₹80,000. They promise 'exposure' and 'future work'.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Accept it to keep cash flowing",
+              "financial_impact": 40000,
+              "behavioral_tag": "Scarcity Mindset",
+              "outcome_narrative": "You are busy, but working for half your worth leads to burnout."
+            },
+            {
+              "id": "c2",
+              "text": "Reject and wait for better",
+              "financial_impact": 0,
+              "behavioral_tag": "Self-Worth/Risk",
+              "outcome_narrative": "You have zero income this week, but you maintained your premium positioning."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_008_health_insurance",
+          "trigger": "Insurance",
+          "title": "The Premium Hike",
+          "description": "Your Health Insurance renewal is ₹12,000. You haven't been sick in 2 years.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Pay it immediately",
+              "financial_impact": -12000,
+              "behavioral_tag": "Risk Management",
+              "outcome_narrative": "A big hit to savings, but you are protected against catastrophe."
+            },
+            {
+              "id": "c2",
+              "text": "Let it lapse for a month",
+              "financial_impact": 0,
+              "behavioral_tag": "Gambler's Fallacy",
+              "outcome_narrative": "You saved the cash. If you get Dengue tomorrow, you are bankrupt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "persona_003",
+      "type": "asset_heavy_gig",
+      "display_profile": {
+        "name": "Vikram Singh",
+        "age": 34,
+        "role": "Cab Driver (Owner-Driver)",
+        "location": "Delhi NCR",
+        "icon_ref": "car_sedan",
+        "bio": "Vikram bought a Swift Dzire on loan to drive for Uber/Ola. His income looks high on paper, but fuel and EMI eat 60% of it.",
+        "quote": "I work for the bank, not for myself."
+      },
+      "financial_baseline": {
+        "avg_monthly_income": 45000,
+        "income_volatility": "Moderate",
+        "savings_balance": 5000,
+        "debt_total": 450000,
+        "debt_type": "Car Loan",
+        "fixed_expenses": 38000
+      },
+      "psychometric_profile": {
+        "risk_appetite": "Low",
+        "planning_horizon": "Medium (Monthly EMI)",
+        "primary_stressor": "Fuel Prices & Car Damage"
+      },
+      "simulation_context": {
+        "current_month": "December (Foggy/Accident Prone)",
+        "active_goal": "Save for daughter's school admission",
+        "urgent_alert": "Car Service due (Engine noise)."
+      },
+      "events": [
+        {
+          "event_id": "evt_001_insurance",
+          "trigger": "Risk Management",
+          "title": "The Insurance Renewal",
+          "description": "Your comprehensive insurance is expiring. Cost: ₹15,000. You have exactly ₹18,000 in the bank.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Pay Full Comprehensive",
+              "financial_impact": -15000,
+              "behavioral_tag": "Risk Averse/Responsible",
+              "outcome_narrative": "You are broke for the week, but you sleep well knowing the car is covered."
+            },
+            {
+              "id": "c2",
+              "text": "Buy Third-Party Liability Only (₹4,000)",
+              "financial_impact": -4000,
+              "behavioral_tag": "Under-Insurance/Gamble",
+              "outcome_narrative": "You saved cash, but if you hit a divider, the repair bill is all on you."
+            },
+            {
+              "id": "c3",
+              "text": "Skip it for now",
+              "financial_impact": 0,
+              "behavioral_tag": "Illegal/Reckless",
+              "outcome_narrative": "You are driving illegally. One police check or accident ends your career."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_002_surge_burnout",
+          "trigger": "Health vs Wealth",
+          "title": "The Midnight Surge",
+          "description": "It's 11 PM. You've driven 12 hours. Surge is 2.5x. You are dizzy with fatigue.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Push for 3 more hours",
+              "financial_impact": 1500,
+              "behavioral_tag": "Health Sacrifice/Greed",
+              "outcome_narrative": "You earned extra, but you nearly fell asleep at the wheel twice."
+            },
+            {
+              "id": "c2",
+              "text": "Go Home",
+              "financial_impact": 0,
+              "behavioral_tag": "Self-Care/Sustainability",
+              "outcome_narrative": "You lost the surge money, but you are fresh for the morning shift."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_003_tyre_burst",
+          "trigger": "Maintenance Crisis",
+          "title": "The Flat Tyre",
+          "description": "Your front tyre bursts. It cannot be patched. A new tyre costs ₹4,500. A second-hand one costs ₹1,500.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Buy New Tyre",
+              "financial_impact": -4500,
+              "behavioral_tag": "Long-term Investment",
+              "outcome_narrative": "Expensive, but it will last 30,000 km."
+            },
+            {
+              "id": "c2",
+              "text": "Buy Second-hand Tyre",
+              "financial_impact": -1500,
+              "behavioral_tag": "Short-term Saving/Risk",
+              "outcome_narrative": "It's cheap, but it might burst again in a month."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_004_drunk_passenger",
+          "trigger": "Conflict Resolution",
+          "title": "The Rowdy Passenger",
+          "description": "A passenger vomits in your car. Cleaning will cost ₹600 and 2 hours off-road. He refuses to pay extra.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Fight/Argue for money",
+              "financial_impact": 0,
+              "behavioral_tag": "Confrontation/Risk",
+              "outcome_narrative": "He pays ₹500 out of fear, but reports you for 'Rude Behavior'. Rating drops."
+            },
+            {
+              "id": "c2",
+              "text": "Let it go, clean it yourself",
+              "financial_impact": -100,
+              "time_impact": "Lose 2 hours",
+              "behavioral_tag": "Conflict Avoidance/Loss",
+              "outcome_narrative": "You lost money and time, but avoided a platform strike."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_005_cng_line",
+          "trigger": "Efficiency",
+          "title": "The CNG Queue",
+          "description": "CNG is ₹30 cheaper than Petrol. But the queue at the pump is 1.5 hours long.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Wait in line",
+              "financial_impact": 0,
+              "time_impact": "Lose 1.5 hours",
+              "behavioral_tag": "Cost Saving/Time devaluation",
+              "outcome_narrative": "You saved on fuel, but lost potential fares during that time."
+            },
+            {
+              "id": "c2",
+              "text": "Fill Petrol and drive",
+              "financial_impact": -300,
+              "behavioral_tag": "Time Value/Efficiency",
+              "outcome_narrative": "Higher running cost, but you kept the wheels moving."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_006_school_fee",
+          "trigger": "Liquidity Crunch",
+          "title": "Admission Fee",
+          "description": "School admission fee is ₹10,000. Due date is tomorrow. You are short by ₹5,000.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Borrow from Moneylender (10% interest)",
+              "financial_impact": 0,
+              "future_liability": 5500,
+              "behavioral_tag": "Desperation/Predatory Debt",
+              "outcome_narrative": "Fee paid. But you now have a high-interest shark on your back."
+            },
+            {
+              "id": "c2",
+              "text": "Ask friend/cousin",
+              "financial_impact": 0,
+              "behavioral_tag": "Social Capital",
+              "outcome_narrative": "He gives it, but reminds you of the money you already owe him."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_007_private_trip",
+          "trigger": "Rule Breaking",
+          "title": "The Outstation Deal",
+          "description": "A passenger offers ₹3,000 cash for a trip to Agra. If you go via App, you get ₹2,200.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Take the Cash Deal",
+              "financial_impact": 3000,
+              "behavioral_tag": "Off-Platform Risk",
+              "outcome_narrative": "Great money. But if the car breaks down or accidents happen, no platform insurance covers you."
+            },
+            {
+              "id": "c2",
+              "text": "Insist on App Booking",
+              "financial_impact": 2200,
+              "behavioral_tag": "Compliance",
+              "outcome_narrative": "Less money, but you are tracked and insured."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_008_emi_warning",
+          "trigger": "Financial Stress",
+          "title": "The Bank Call",
+          "description": "You missed last month's EMI. Bank calls: 'Pay double EMI (₹24,000) by Friday or we seize the car.'",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Sell wife's gold jewelry",
+              "financial_impact": 24000,
+              "behavioral_tag": "Asset Liquidation/Desperation",
+              "outcome_narrative": "Car saved. But you lost a family asset that appreciates in value."
+            },
+            {
+              "id": "c2",
+              "text": "Drive 18 hours a day for 5 days",
+              "financial_impact": 0,
+              "behavioral_tag": "Overexertion",
+              "outcome_narrative": "You might make the money, or you might crash the car from sleep deprivation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "persona_004",
+      "type": "micro_entrepreneur",
+      "display_profile": {
+        "name": "Anjali Mehta",
+        "age": 32,
+        "role": "Home Baker (Instagram Business)",
+        "location": "Mumbai (Suburbs)",
+        "icon_ref": "chef_hat",
+        "bio": "Anjali runs a bakery from her kitchen. Orders come via Instagram. She struggles with separating household grocery money from business inventory costs.",
+        "quote": "Revenue is not Profit, but I keep forgetting that."
+      },
+      "financial_baseline": {
+        "avg_monthly_income": 28000,
+        "income_volatility": "Seasonal (High during festivals)",
+        "savings_balance": 20000,
+        "debt_total": 0,
+        "fixed_expenses": 10000
+      },
+      "psychometric_profile": {
+        "risk_appetite": "Moderate",
+        "planning_horizon": "Order-to-Order",
+        "primary_stressor": "Raw Material Costs"
+      },
+      "simulation_context": {
+        "current_month": "November (Wedding Season)",
+        "active_goal": "Upgrade to a professional oven (Cost ₹40k)",
+        "urgent_alert": "Bulk order received, need raw materials."
+      },
+      "events": [
+        {
+          "event_id": "evt_001_big_order",
+          "trigger": "Working Capital Crunch",
+          "title": "The Bulk Order",
+          "description": "A client wants 50kg of cakes for a reception. Revenue: ₹40,000. Advance paid: ₹5,000. You need ₹15,000 immediately for ingredients. Bank Balance: ₹8,000.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Use House Rent money for ingredients",
+              "financial_impact": 0,
+              "behavioral_tag": "Commingling Funds/Risky",
+              "outcome_narrative": "You took the order, but now you are stressed about replacing the rent money before the 1st."
+            },
+            {
+              "id": "c2",
+              "text": "Swipe Personal Credit Card",
+              "financial_impact": 0,
+              "future_liability": 15000,
+              "behavioral_tag": "Leverage",
+              "outcome_narrative": "You used credit to fund operations. Smart if the client pays on time. Disaster if they delay."
+            },
+            {
+              "id": "c3",
+              "text": "Reject the order",
+              "financial_impact": 0,
+              "behavioral_tag": "Risk Aversion/Growth Stagnation",
+              "outcome_narrative": "You slept peacefully, but your business didn't grow."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_002_oven_breakdown",
+          "trigger": "Asset Failure",
+          "title": "Oven Trouble",
+          "description": "Your main oven coil burns out 2 days before a delivery. Repair: ₹2,000 (1 day). Renting a neighbor's oven: ₹500 (immediate).",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Pay for Urgent Repair",
+              "financial_impact": -2000,
+              "behavioral_tag": "Asset Maintenance",
+              "outcome_narrative": "Costly, but you own the asset."
+            },
+            {
+              "id": "c2",
+              "text": "Rent Neighbor's Oven",
+              "financial_impact": -500,
+              "behavioral_tag": "Jugaad/Cost Saving",
+              "outcome_narrative": "Cheap fix, but inconvenient to carry trays back and forth."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_003_festival_stall",
+          "trigger": "Marketing Investment",
+          "title": "The Christmas Flea Market",
+          "description": "A popular mall offers a stall for ₹5,000. Expected sales: ₹15,000. But it's a gamble.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Book the stall",
+              "financial_impact": -5000,
+              "behavioral_tag": "Marketing Risk",
+              "outcome_narrative": "You took a risk. If it rains, you lose money. If it shines, you gain customers."
+            },
+            {
+              "id": "c2",
+              "text": "Skip it, sell online",
+              "financial_impact": 0,
+              "behavioral_tag": "Risk Aversion",
+              "outcome_narrative": "Safe, but you miss brand visibility."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_004_helper_hire",
+          "trigger": "Scaling",
+          "title": "Too Many Orders",
+          "description": "You are overworked. You can hire a helper for the month for ₹6,000.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Hire Helper",
+              "financial_impact": -6000,
+              "behavioral_tag": "Delegation/Growth",
+              "outcome_narrative": "Your profit margin drops, but you can take double the orders."
+            },
+            {
+              "id": "c2",
+              "text": "Do it all yourself",
+              "financial_impact": 0,
+              "behavioral_tag": "Self-Reliance/Burnout",
+              "outcome_narrative": "You keep all the profit, but you are sleeping 4 hours a night."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_005_delivery_mishap",
+          "trigger": "Customer Service",
+          "title": "The Smashed Cake",
+          "description": "Dunzo/Uber guy dropped the cake. Customer is furious. Value: ₹1,500.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Full Refund + Apology Gift",
+              "financial_impact": -1800,
+              "behavioral_tag": "Brand Building",
+              "outcome_narrative": "Huge loss today, but the customer respects you and will return."
+            },
+            {
+              "id": "c2",
+              "text": "Blame the Delivery Guy",
+              "financial_impact": 0,
+              "behavioral_tag": "Deflection/Brand Damage",
+              "outcome_narrative": "You saved the money, but the customer posts a nasty story on Instagram."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_006_bulk_buy",
+          "trigger": "Inventory Management",
+          "title": "The Chocolate Deal",
+          "description": "Wholesaler offers premium chocolate at 30% discount if you buy 10kg (₹8,000).",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Buy Bulk",
+              "financial_impact": -8000,
+              "behavioral_tag": "Inventory Investment",
+              "outcome_narrative": "Cash trapped in stock, but your margins will improve for 3 months."
+            },
+            {
+              "id": "c2",
+              "text": "Buy small quantity as needed",
+              "financial_impact": -1000,
+              "behavioral_tag": "Liquidity Preference",
+              "outcome_narrative": "You keep cash fluid, but pay higher prices per kg."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_007_family_loan",
+          "trigger": "Commingling Funds",
+          "title": "Husband Needs Cash",
+          "description": "Your husband asks for ₹5,000 from your 'Business Box' for household repairs.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Give it",
+              "financial_impact": -5000,
+              "behavioral_tag": "Business-Personal Mix",
+              "outcome_narrative": "Your business capital is gone. Now you can't buy the new molds you wanted."
+            },
+            {
+              "id": "c2",
+              "text": "Refuse, keep it separate",
+              "financial_impact": 0,
+              "behavioral_tag": "Professionalism",
+              "outcome_narrative": "Family friction, but business integrity maintained."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_008_competitor_price",
+          "trigger": "Market Pressure",
+          "title": "The Price War",
+          "description": "A new baker in the neighborhood is selling cakes for ₹200 less than you.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Lower your prices",
+              "financial_impact": 0,
+              "behavioral_tag": "Race to Bottom",
+              "outcome_narrative": "You keep customers, but you are working for peanuts now."
+            },
+            {
+              "id": "c2",
+              "text": "Keep price, emphasize quality",
+              "financial_impact": 0,
+              "behavioral_tag": "Value Proposition",
+              "outcome_narrative": "You lose price-sensitive clients, but keep the loyal ones."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "persona_005",
+      "type": "platform_technician",
+      "display_profile": {
+        "name": "Suresh Reddy",
+        "age": 28,
+        "role": "AC & Appliance Repair (Platform Partner)",
+        "location": "Hyderabad",
+        "icon_ref": "tools_wrench",
+        "bio": "Suresh gets jobs via a gig app (like Urban Company). He pays for his own travel and tools. The platform takes a 20% cut.",
+        "quote": "5 stars is the difference between eating and starving."
+      },
+      "financial_baseline": {
+        "avg_monthly_income": 35000,
+        "income_volatility": "Seasonal (High in Summer)",
+        "savings_balance": 8000,
+        "debt_total": 15000,
+        "fixed_expenses": 18000
+      },
+      "psychometric_profile": {
+        "risk_appetite": "High",
+        "planning_horizon": "Weekly",
+        "primary_stressor": "Platform Ratings & Commission"
+      },
+      "simulation_context": {
+        "current_month": "April (Peak Summer)",
+        "active_goal": "Buy a second-hand bike",
+        "urgent_alert": "Gas filling kit leaking, needs replacement."
+      },
+      "events": [
+        {
+          "event_id": "evt_001_bypass",
+          "trigger": "Ethics vs Income",
+          "title": "The Direct Deal",
+          "description": "You fix an AC. The bill is ₹2,000. The customer offers: 'Cancel on the app, I will pay you ₹1,800 cash directly.' You save the commission, customer saves money.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Accept Cash (Off-platform)",
+              "financial_impact": 1800,
+              "behavioral_tag": "Unethical/Short-term Gain",
+              "outcome_narrative": "You made extra cash today. But if the app finds out (GPS tracking/Algorithms), you get banned permanently."
+            },
+            {
+              "id": "c2",
+              "text": "Refuse, Bill via App",
+              "financial_impact": 1600,
+              "behavioral_tag": "Ethical/Long-term Security",
+              "outcome_narrative": "You earned less, but your profile remains safe and highly rated."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_002_spare_part",
+          "trigger": "Ethics/Margin",
+          "title": "The Capacitor Price",
+          "description": "AC Capacitor needs changing. Cost ₹300. Market rate charge is ₹800. You can tell the customer it's an 'imported' one and charge ₹1,200.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Overcharge (₹1,200)",
+              "financial_impact": 900,
+              "behavioral_tag": "Greed/Opportunism",
+              "outcome_narrative": "High profit. But if the customer checks online prices, you get a 1-star review."
+            },
+            {
+              "id": "c2",
+              "text": "Charge Standard (₹800)",
+              "financial_impact": 500,
+              "behavioral_tag": "Fair Pricing",
+              "outcome_narrative": "Decent profit, happy customer."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_003_tool_upgrade",
+          "trigger": "Efficiency",
+          "title": "The Power Drill",
+          "description": "Your manual screwdriver is slow. A Bosch Power Drill costs ₹4,000. It saves 15 mins per job.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Buy the Drill",
+              "financial_impact": -4000,
+              "behavioral_tag": "Productivity Investment",
+              "outcome_narrative": "You are faster now. You can take 1 extra job per day."
+            },
+            {
+              "id": "c2",
+              "text": "Stick to manual",
+              "financial_impact": 0,
+              "behavioral_tag": "Status Quo",
+              "outcome_narrative": "Hard work, wrist pain, but cash saved."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_004_review_blackmail",
+          "trigger": "Platform Stress",
+          "title": "The 5-Star Ransom",
+          "description": "Customer says: 'Give me ₹200 discount or I will give you 3 stars.' You are at 4.6 rating (Danger zone).",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Give Discount",
+              "financial_impact": -200,
+              "behavioral_tag": "Fear/Capitulation",
+              "outcome_narrative": "You bought the rating. It feels unfair, but you survived."
+            },
+            {
+              "id": "c2",
+              "text": "Refuse",
+              "financial_impact": 0,
+              "behavioral_tag": "Principle",
+              "outcome_narrative": "He gave 3 stars. Your average dropped to 4.5. You get fewer leads next week."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_005_loan_offer",
+          "trigger": "Debt",
+          "title": "The Platform Loan",
+          "description": "The App offers you a 'Partner Personal Loan' of ₹20,000 instantly. Deduction: ₹200/day from earnings.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Take it for Bike Repair",
+              "financial_impact": 20000,
+              "future_liability": 24000,
+              "behavioral_tag": "Easy Credit/Trap",
+              "outcome_narrative": "Easy money now, but your daily earnings will feel very small for months."
+            },
+            {
+              "id": "c2",
+              "text": "Ignore it",
+              "financial_impact": 0,
+              "behavioral_tag": "Debt Aversion",
+              "outcome_narrative": "Smart. Never borrow against future labor."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_006_season_rush",
+          "trigger": "Work-Life Balance",
+          "title": "Holi Weekend",
+          "description": "It's Holi. High demand for cleaning. Triple rates. But your family wants you home.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Work on Holi",
+              "financial_impact": 4000,
+              "behavioral_tag": "Income Maximization",
+              "outcome_narrative": "You made a week's income in a day. Family is sad, but the fridge is full."
+            },
+            {
+              "id": "c2",
+              "text": "Take off",
+              "financial_impact": 0,
+              "behavioral_tag": "Family Values",
+              "outcome_narrative": "Great memories, empty pocket."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_007_training_day",
+          "trigger": "Skill Upgradation",
+          "title": "Advanced Training",
+          "description": "App requires you to attend 'Washing Machine Repair' training. Cost ₹500. 1 Day. Increases job variety.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Attend Training",
+              "financial_impact": -500,
+              "time_impact": "Lose 1 day income",
+              "behavioral_tag": "Upskilling",
+              "outcome_narrative": "You lost money today, but now you qualify for higher-paying tickets."
+            },
+            {
+              "id": "c2",
+              "text": "Skip it",
+              "financial_impact": 0,
+              "behavioral_tag": "Short-termism",
+              "outcome_narrative": "You saved the fee, but you are stuck fixing cheap fans."
+            }
+          ]
+        },
+        {
+          "event_id": "evt_008_accidental_damage",
+          "trigger": "Liability",
+          "title": "The Broken Vase",
+          "description": "While moving a ladder, you accidentally break a customer's flower vase. Worth ₹800.",
+          "choices": [
+            {
+              "id": "c1",
+              "text": "Pay for it immediately",
+              "financial_impact": -800,
+              "behavioral_tag": "Accountability",
+              "outcome_narrative": "You lost the profit from the job, but avoided a complaint."
+            },
+            {
+              "id": "c2",
+              "text": "Deny it / Say it was already cracked",
+              "financial_impact": 0,
+              "behavioral_tag": "Dishonesty",
+              "outcome_narrative": "You saved the money. Customer is furious and calls support."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
