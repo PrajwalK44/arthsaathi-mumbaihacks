@@ -122,7 +122,6 @@ npx expo start
 - **TypeScript** for type safety
 - **NativeWind** for styling
 - **Expo Router** for navigation
-- **AsyncStorage** for local data
 
 ### Backend
 
