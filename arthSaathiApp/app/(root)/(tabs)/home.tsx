@@ -76,6 +76,9 @@ export default function Home() {
                   style: "destructive",
                   onPress: async () => {
                     await AsyncStorage.removeItem("arth_user").catch(() => {});
+                    await AsyncStorage.removeItem("arth_timeline").catch(
+                      () => {}
+                    );
                     router.replace("/(auth)/welcome");
                   },
                 },

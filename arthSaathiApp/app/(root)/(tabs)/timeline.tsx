@@ -11,9 +11,19 @@ export default function Timeline() {
 
   const loadTimeline = async () => {
     try {
+      // Get current user
+      const userStr = await AsyncStorage.getItem("arth_user");
+      const user = userStr ? JSON.parse(userStr) : null;
+      const userEmail = user?.email || "";
+
       const timeline = await AsyncStorage.getItem("arth_timeline");
       if (timeline) {
-        setTimelineEntries(JSON.parse(timeline));
+        const allEntries = JSON.parse(timeline);
+        // Filter entries to only show current user's entries
+        const userEntries = allEntries.filter(
+          (entry: any) => !entry.userEmail || entry.userEmail === userEmail
+        );
+        setTimelineEntries(userEntries);
       }
     } catch (error) {
       console.error("Failed to load timeline:", error);
@@ -173,6 +183,9 @@ export default function Timeline() {
                 style: "destructive",
                 onPress: async () => {
                   await AsyncStorage.removeItem("arth_user").catch(() => {});
+                  await AsyncStorage.removeItem("arth_timeline").catch(
+                    () => {}
+                  );
                   router.replace("/(auth)/welcome");
                 },
               },

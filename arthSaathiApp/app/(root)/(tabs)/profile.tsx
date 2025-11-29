@@ -19,28 +19,6 @@ export default function Profile() {
       .catch(() => {});
   }, []);
 
-  const handleSignOut = () => {
-    Alert.alert(
-      "Sign Out",
-      "Are you sure you want to sign out?",
-      [
-        {
-          text: "Cancel",
-          style: "cancel",
-        },
-        {
-          text: "Sign Out",
-          style: "destructive",
-          onPress: () => {
-            // Clear any user data/tokens here
-            AsyncStorage.removeItem("arth_user").catch(() => {});
-            router.replace("/(auth)/welcome");
-          },
-        },
-      ],
-      { cancelable: true }
-    );
-  };
   const menuItems = [
     {
       section: "Account",
@@ -104,6 +82,9 @@ export default function Profile() {
                 style: "destructive",
                 onPress: async () => {
                   await AsyncStorage.removeItem("arth_user").catch(() => {});
+                  await AsyncStorage.removeItem("arth_timeline").catch(
+                    () => {}
+                  );
                   router.replace("/(auth)/welcome");
                 },
               },

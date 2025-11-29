@@ -289,6 +289,12 @@ const PersonaSimulation = () => {
 
           // Save simulation to timeline
           const report = generateSimulationReport();
+
+          // Get current user email
+          const userStr = await AsyncStorage.getItem("arth_user");
+          const user = userStr ? JSON.parse(userStr) : null;
+          const userEmail = user?.email || "";
+
           const simulationEntry = {
             id: Date.now().toString(),
             type: "simulation",
@@ -301,6 +307,7 @@ const PersonaSimulation = () => {
             eventsCompleted: totalEvents,
             timestamp: Date.now(),
             date: new Date().toISOString(),
+            userEmail: userEmail, // Add user email to filter entries by user
           };
 
           try {
@@ -310,8 +317,8 @@ const PersonaSimulation = () => {
               ? JSON.parse(existingTimeline)
               : [];
             timeline.unshift(simulationEntry);
-            // Keep only last 20 entries
-            const trimmedTimeline = timeline.slice(0, 20);
+            // Keep only last 100 entries total (across all users)
+            const trimmedTimeline = timeline.slice(0, 100);
             await AsyncStorage.setItem(
               "arth_timeline",
               JSON.stringify(trimmedTimeline)
