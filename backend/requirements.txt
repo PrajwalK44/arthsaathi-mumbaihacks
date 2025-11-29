@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+cryptography
+requests
+python-dotenv
+pydantic
+langchain
+langgraph
+deepagents
+# Note: the `deepagents` package name is illustrative; adjust to the correct package name if different.
+langchain-mistralai
+langchain-core
+streamlit
+pytest
