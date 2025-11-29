@@ -124,17 +124,21 @@ npx expo start
 - **Expo Router** for navigation
 - **AsyncStorage** for local data
 
-### Backend (Coming Soon)
+### Backend
 
 - **Python** with FastAPI
 - **LangGraph** for AI agents
-- **OpenAI** for intelligent insights
+- **MistralLLM** for intelligent insights
 
 ---
 
 ## 📱 Screenshots & Demo
 
 _Experience the financial journey through beautiful, intuitive interfaces designed for the gig economy workforce._
+<img width="360" height="800" alt="image" src="https://github.com/user-attachments/assets/5c7edac0-9078-42f9-8068-0a522534d2ba" />
+<img width="360" height="800" alt="image" src="https://github.com/user-attachments/assets/ce58a740-0ef3-4306-8899-9f33f4314eb9" />
+<img width="360" height="800" alt="image" src="https://github.com/user-attachments/assets/acdc3b71-a310-419f-8605-bfe1d1b437a2" />
+<img width="360" height="800" alt="image" src="https://github.com/user-attachments/assets/0af3ad55-0026-4bf9-bc8c-a69a345c43e1" />
 
 ---
 
